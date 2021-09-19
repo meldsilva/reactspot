@@ -1,13 +1,28 @@
 import {getAuthCode} from "../utils/helpers"
+import {useEffect, useState} from "react";
 
 const RedirectPage = () => {
 
- // console.log(getAuthCode("sss"));
+    const[authcode, setAuthCode] = useState(null);
+
+    useEffect(() => {
+        if(!getAuthCode(window.location.href)) {
+            return;
+        }
+        setAuthCode(getAuthCode(window.location.href));
+        localStorage.setItem('auth', getAuthCode(window.location.href));
+        // localStorage.setItem('expiry_time', expiryTime);
+
+        // get token here
+
+
+    },[authcode]);
+
 
     return(
         <>
         <h1>Redirect Page</h1>
-        {/*<h2>{getAuthCode(window.location.href)}</h2>*/}
+        <p>{getAuthCode(window.location.href)}</p>
         {/*<p>{process.env.REACT_APP_CLIENT_ID}</p>*/}
 
             </>
