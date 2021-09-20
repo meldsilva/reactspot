@@ -12,21 +12,24 @@ import Authenticator from "./components/Authenticator";
 function App() {
   return (
 
-      <BrowserRouter>
-          <Authenticator />
-
+    <>
+    {/* <Route path="authenticator" element={<Authenticator />}/> */}
+        <Authenticator />
           <Routes>
             {/*<Route path="/" element={<Authenticator/>} />*/}
             <Route path="/" element={<Home/>} />
+
             <Route path="playlists" element={<Playlists/>} />
             <Route path="podcasts" element={<Podcasts/>} />
             <Route path="artists" element={<Artists/>} />
             <Route path="albums" element={<Albums/>} />
             <Route path="callback" element={<RedirectPage/>} />
-
             <Route path="*" element={<PageNotFound/>} />
         </Routes>
-          </BrowserRouter>
+      
+              
+              </>
+
   );
 }
 
