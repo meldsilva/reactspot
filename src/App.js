@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 // import './App.css';
-import {Route, Routes, BrowserRouter} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import Home from "./components/Home";
 import Playlists from "./components/Playlists";
 import {PageNotFound} from "./components/PageNotFound";
@@ -14,7 +14,7 @@ function App() {
     <>
       <Authenticator />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home token=""/>} />
           <Route path="playlists" element={<Playlists />} />
           <Route path="podcasts" element={<Podcasts />} />
           <Route path="artists" element={<Artists />} />
