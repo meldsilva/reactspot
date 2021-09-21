@@ -5,33 +5,22 @@ const Authenticator = (props) => {
     // Constants
     const client_id = process.env.REACT_APP_CLIENT_ID;
     const callback_uri = process.env.REACT_APP_CALLBACK_URI;
-    const authEndpoint = process.env.REACT_APP_AUTH_ENDPOINT;
+    const auth_endpoint = process.env.REACT_APP_AUTH_ENDPOINT;
     //add scopes here
 
     // States
     const [user, setUsername] = useState("");
     const [auth_code, setAuthCode] = useState(null);
     const [token, setToken] = useState(null);
-    //
-
-    const auth_call = `${authEndpoint}?client_id=${client_id}&redirect_uri=${callback_uri}&scope=user-read-private user-read-email&response_type=code&show_dialog=true`;
+    
+    // Construct auto call uri
+    const auth_call = `${auth_endpoint}?client_id=${client_id}&redirect_uri=${callback_uri}&scope=user-read-private user-read-email&response_type=code&show_dialog=true`;
 
     function getauthcode(e) {
         e.preventDefault()
-
-        window.location = auth_call;
-
-        setAuthCode(window.location.href);
-        props.getAuthcode(JSON.stringify(window.location.href));
-        // return <h3>JSON.stringify(window.location.href<h3>;
+        // Call auth API
+        window.location = auth_call; // redirected page's window will contain authcode.
     }
-
-    // useEffect(() => {
-    //     fetch(`https://restcountries.eu/rest/v2/name/${name}?fullText=true`)
-    //         .then(response => response.json())
-    //         .then(setData)
-    //         .catch(console.error.error);
-    // },[name]);
 
     return(
         <div>

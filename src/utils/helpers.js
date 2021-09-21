@@ -8,12 +8,8 @@ export const getAuthCode = (url) => {
     if (idx > -1) {
         authCode = url.substring(idx + searchstr.length);
     }
-    console.log("authCode is = ", authCode);
     return authCode;
 };
-
-
-// http://localhost:3000/callback/?code=AQBAPjnn0CWqKc3EdpcemwgNrZN0ab49MMQUGehjDWGqmtWWAIoUHEhMr__m_PqV4iaTkZ
 
 //
 // export const setAuthHeader = () => {

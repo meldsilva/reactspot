@@ -9,7 +9,6 @@ const Home = (props) => {
             <Link to="podcasts">Podcasts</Link>
             <Link to="artists">Artists</Link>
             <Link to="albums">Albums</Link>
-
         </nav>
         </>
 
