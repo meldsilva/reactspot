@@ -1,27 +1,12 @@
-        //    axios({
-        //     url: "https://accounts.spotify.com/api/token",
-        //     method: "post",
-        //     params: {
-        //         grant_type: "authorization_code",
-        //         code: auth_code,
-        //         redirect_uri: callback_uri,
-        //     },
-        //     headers: {
-        //         Authorization: `Basic ${encodeAuthorizationToBase64()}`,
-        //     },
-        // })
-
-   const client_id = process.env.REACT_APP_CLIENT_ID;
-    const client_secret = process.env.REACT_APP_CLIENT_SECRET;
-    const callback_uri = process.env.REACT_APP_CALLBACK_URI;
-
-    const[auth_code, setAuthCode] = useState(null);
-    const[token, setToken] = useState(null);
-
-    const encodeAuthorizationToBase64 = () => {
-        const stringToEncode = `${process.env.REACT_APP_CLIENT_ID}:${process.env.REACT_APP_CLIENT_SECRET}`;
-        return Buffer.from(stringToEncode).toString("base64");
-    };
+{
+   "data":{
+      "access_token":"BQCys1PgmXVoSd8i-0W9tAriNWH1kRlpi5EF7V1bYjuTik8qv2_yvUviCGbE2ChXsUKdkb3TIYDCVKzAJovZ7FPAVtI5ETFbUc2aqbA4ePIuNycRsBGPMuZADLk9EuKE6eC8kvVpelMy6ELH2Z0NJPxGnH-cTIgs",
+      "token_type":"Bearer",
+      "expires_in":3600,
+      "refresh_token":"AQA1VB3ybAXYcT-UmUH5UE7O8RdDXN6r8M3Fq8NG_SHA0CxK1QSbY0vzWs48sIYHp7LIMhbG4Eq2yOUX3U2TzYjDgpvR_Ba50vp-ia69d1j3R8-3weGH9V7UtYkUTcUc6L4",
+      "scope":"user-read-email user-read-private"
+   }
+}
 
 
-http://localhost:3000/callback/?code=AQBtrPBgcy26_86iN2mJ6p8DVcSswqygtSQMxzF1uvb_6HdrSdladVK9QhOy1r2MeQ83sSP4ndHHtboB65ZNcsadCrMIf_Y5Z-iLGehoTO5dZvcdbEEFz5yQpHRXzGuZPk6fjNSg4veDCQdXLAOzt_ciOvI5AlXgEmNzWxymhha0TOld7-Jx4pABD6ruEcxZPmF31QEW6dV_ausXndJ7A8FyjZVLEgw
+uD85#cGmjZ

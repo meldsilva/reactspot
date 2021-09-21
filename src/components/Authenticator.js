@@ -4,7 +4,6 @@ const Authenticator = (props) => {
 
     // Constants
     const client_id = process.env.REACT_APP_CLIENT_ID;
-    // const client_secret = process.env.REACT_APP_CLIENT_SECRET;
     const callback_uri = process.env.REACT_APP_CALLBACK_URI;
     const authEndpoint = process.env.REACT_APP_AUTH_ENDPOINT;
     //add scopes here
@@ -21,12 +20,6 @@ const Authenticator = (props) => {
         e.preventDefault()
 
         window.location = auth_call;
-
-        // fetch(auth_call)
-        //         .then(response => response.json())
-        //         .then(setAuthCode)
-        //         .catch(console.error.error);
-        // console.log(window.location.href);
 
         setAuthCode(window.location.href);
         props.getAuthcode(JSON.stringify(window.location.href));

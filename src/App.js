@@ -18,7 +18,6 @@ function App() {
           <Routes>
             {/*<Route path="/" element={<Authenticator/>} />*/}
             <Route path="/" element={<Home/>} />
-
             <Route path="playlists" element={<Playlists/>} />
             <Route path="podcasts" element={<Podcasts/>} />
             <Route path="artists" element={<Artists/>} />
@@ -26,9 +25,7 @@ function App() {
             <Route path="callback" element={<RedirectPage/>} />
             <Route path="*" element={<PageNotFound/>} />
         </Routes>
-      
-              
-              </>
+      </>
 
   );
 }
