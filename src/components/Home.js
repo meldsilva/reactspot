@@ -2,7 +2,6 @@ import {Link, Outlet} from "react-router-dom";
 
 const Home = (props) => {
 
-
     return(
         <>
         <h2>Home</h2>
@@ -12,7 +11,6 @@ const Home = (props) => {
             <Link to="artists">Artists</Link>
             <Link to="albums">Albums</Link>
         </nav>
-
         </>
     );
 }

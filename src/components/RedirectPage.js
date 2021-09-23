@@ -49,17 +49,7 @@ const RedirectPage = () => {
                     setToken(resp.data.access_token);
                     localStorage.setItem('token', resp.data.access_token);
                     //Redirect to Home page here along with the token as a prop
-                    //navigate("/",);
-                    // <Redirect to="/" /> 
-                    
-                    navigate("/"); // ??? I'm not sure if this is the right way
-
-                    /*
-                    Extract search term using refs.
-                    const searchValue = inputRef.current.value
-                    navigate(`?term=${searchValue}`)
-                    */
-
+                    navigate("/");
                 })
                 .catch( (err) => {
                     console.log("TOKEN-API POST ERROR: ",err);

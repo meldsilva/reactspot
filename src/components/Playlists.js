@@ -14,7 +14,6 @@ const Playlists = () => {
             });
             setPlaylists(resp.data.items);
             console.log(resp.data.items);
-            // if(!resp.data.items) return;
         }
         catch(error) {
             console.log(error);
@@ -33,13 +32,12 @@ const Playlists = () => {
         //     console.log("PLAYLISTS API ERROR",JSON.stringify(err));
         //     return;
         // });
-    });
+    },[]);
 
     return(
         <div>
             <h3>Here are my playlists...</h3>
-            <p>{playlists[0].name}</p>
-            <p>{playlists[1].name}</p>
+            <p>{playlists.href}</p>
         </div>
     );
       
