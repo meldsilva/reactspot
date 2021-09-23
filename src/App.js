@@ -9,6 +9,7 @@ import Artists from "./components/Artists";
 import Podcasts from "./components/Podcasts";
 import RedirectPage from "./components/RedirectPage";
 import Authenticator from "./components/Authenticator";
+
 function App() {
   return (
     <>

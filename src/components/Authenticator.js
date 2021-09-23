@@ -14,7 +14,7 @@ const Authenticator = (props) => {
     const [token, setToken] = useState(null);
     
     // Construct auto call uri
-    const auth_call = `${auth_endpoint}?client_id=${client_id}&redirect_uri=${callback_uri}&scope=user-read-private user-read-email&response_type=code&show_dialog=true`;
+    const auth_call = `${auth_endpoint}?client_id=${client_id}&redirect_uri=${callback_uri}&scope=user-read-private user-read-email playlist-read-private&response_type=code&show_dialog=true`;
 
     function getauthcode(e) {
         e.preventDefault()

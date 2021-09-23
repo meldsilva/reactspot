@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import qs from 'qs';
 import { useNavigate } from "react-router-dom"
-import Home from "./Home";
 
 const RedirectPage = () => {
 
@@ -25,10 +24,6 @@ const RedirectPage = () => {
     // API -- Auth Code call
     //--------------------------
     useEffect(() => {
-
-        console.log("auth_code state = ", auth_code);
-        console.log("token state = ", token);
-
         if(!getAuthCode(window.location.href)) {
             return;
         }
@@ -51,25 +46,33 @@ const RedirectPage = () => {
             api_endpoint,
             request_body,
             request_header).then( (resp) => {
-                    console.log("Token Response: ", resp.data.access_token);
                     setToken(resp.data.access_token);
                     localStorage.setItem('token', resp.data.access_token);
-                    //Redirect here
+                    //Redirect to Home page here along with the token as a prop
                     //navigate("/",);
+                    // <Redirect to="/" /> 
                     
-                    //navigate(<Home token={token} /> ); // ??? I'm not sure if this is the right way
+                    navigate("/playlists"); // ??? I'm not sure if this is the right way
+
+                    /*
+                    Extract search term using refs.
+                    const searchValue = inputRef.current.value
+                    navigate(`?term=${searchValue}`)
+                    */
+
                 })
                 .catch( (err) => {
-                    console.log("TOKEN API POST ERROR: ",err);
+                    console.log("TOKEN-API POST ERROR: ",err);
                 });
     });
   
     return(
         <>
-            <h1>Redirect Page</h1>
+            {/* <h1>Redirect Page</h1>
+
             <p>Auth Code: {auth_code}</p>
             <p>Token: {token}</p>
-            <Home token={token} />
+            <Home token={token} /> */}
         </>
     );
 }

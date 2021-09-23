@@ -13,7 +13,6 @@ const Home = (props) => {
             <Link to="artists">Artists</Link>
             <Link to="albums">Albums</Link>
         </nav>
-        <p>{props.token}</p>
         </>
     );
 }
