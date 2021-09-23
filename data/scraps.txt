@@ -1,16 +1,6 @@
-{
-   "data":{
-      "access_token":"BQCys1PgmXVoSd8i-0W9tAriNWH1kRlpi5EF7V1bYjuTik8qv2_yvUviCGbE2ChXsUKdkb3TIYDCVKzAJovZ7FPAVtI5ETFbUc2aqbA4ePIuNycRsBGPMuZADLk9EuKE6eC8kvVpelMy6ELH2Z0NJPxGnH-cTIgs",
-      "token_type":"Bearer",
-      "expires_in":3600,
-      "refresh_token":"AQA1VB3ybAXYcT-UmUH5UE7O8RdDXN6r8M3Fq8NG_SHA0CxK1QSbY0vzWs48sIYHp7LIMhbG4Eq2yOUX3U2TzYjDgpvR_Ba50vp-ia69d1j3R8-3weGH9V7UtYkUTcUc6L4",
-      "scope":"user-read-email user-read-private"
-   }
-}
-
-
-        console.log("Auth Code state = ", auth_code);
-        console.log("Auth Code state = ", auth_code);
+Todos:
+1. try passing props from redirect to spot components
+2. fix post errors for api token call
 
         
 uD85#cGmjZ

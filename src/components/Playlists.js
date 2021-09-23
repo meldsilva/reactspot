@@ -1,35 +1,46 @@
 import axios from "axios";
-import { useEffect, useState } from "react/cjs/react.development";
-import { createBearerToken } from "../utils/helpers";
+import { useEffect, useState } from "react";
 
 const Playlists = () => {
-
-    // console.log("Playlists props token is", props.token);
-    const [playlists, setPlaylists] = useState();
+    const [playlists, setPlaylists] = useState([]);
     const token = localStorage.getItem('token');
 
-    useEffect( ( ) => {
-        axios.get(
-            'https://api.spotify.com/v1/me/playlists',
-            {
+    useEffect( async () => {
+        try {
+            const resp = await axios.get('https://api.spotify.com/v1/me/playlists?limit=10', {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    'Authorization': `Bearer ${token}`
                 }
-            }
-        ).then( (resp) => {
-            setPlaylists(resp.data);
-            console.log(resp.data);
-        }).catch( (err) => {
-            console.log("PLAYLISTS API ERROR",JSON.stringify(err));
-            return <p>{JSON.stringify(err)}</p>
-        });
-
+            });
+            setPlaylists(resp.data.items);
+            console.log(resp.data.items);
+            // if(!resp.data.items) return;
+        }
+        catch(error) {
+            console.log(error);
+        }
+        // await axios.get(
+        //     'https://api.spotify.com/v1/me/playlists',
+        //     {
+        //         headers: {
+        //             Authorization: `Bearer ${token}`,
+        //         }
+        //     }
+        // ).then( (resp) => {
+        //     setPlaylists(resp.data);
+        //     console.log(resp.data);
+        // }).catch( (err) => {
+        //     console.log("PLAYLISTS API ERROR",JSON.stringify(err));
+        //     return;
+        // });
     });
+
     return(
         <div>
-            
-            <p>{JSON.stringify(playlists.href)}</p>
-        </div> 
+            <h3>Here are my playlists...</h3>
+            <p>{playlists[0].name}</p>
+            <p>{playlists[1].name}</p>
+        </div>
     );
       
 }

@@ -52,7 +52,7 @@ const RedirectPage = () => {
                     //navigate("/",);
                     // <Redirect to="/" /> 
                     
-                    navigate("/playlists"); // ??? I'm not sure if this is the right way
+                    navigate("/"); // ??? I'm not sure if this is the right way
 
                     /*
                     Extract search term using refs.
@@ -64,16 +64,10 @@ const RedirectPage = () => {
                 .catch( (err) => {
                     console.log("TOKEN-API POST ERROR: ",err);
                 });
-    });
+    },[auth_code]);
   
     return(
-        <>
-            {/* <h1>Redirect Page</h1>
-
-            <p>Auth Code: {auth_code}</p>
-            <p>Token: {token}</p>
-            <Home token={token} /> */}
-        </>
+       null
     );
 }
 export default RedirectPage;

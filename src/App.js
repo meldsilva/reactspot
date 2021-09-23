@@ -11,11 +11,13 @@ import RedirectPage from "./components/RedirectPage";
 import Authenticator from "./components/Authenticator";
 
 function App() {
+
+
   return (
     <>
       <Authenticator />
         <Routes>
-          <Route path="/" element={<Home token=""/>} />
+          <Route path="/" element={<Home />} />
           <Route path="playlists" element={<Playlists />} />
           <Route path="podcasts" element={<Podcasts />} />
           <Route path="artists" element={<Artists />} />
