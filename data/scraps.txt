@@ -4,3 +4,62 @@ Todos:
 
         
 uD85#cGmjZ
+
+
+
+// useEffect( () => {
+    //     setLoading(true);
+
+    //     async function fetchData() {
+    //     try {
+    //         const response = await axios.get('https://api.spotify.com/v1/me/playlists?limit=10', {
+    //             headers: {
+    //                 'Authorization': `Bearer ${token}`
+    //             }
+    //         });
+    //         setPlaylists(response.data);
+    //         console.log(response.data);
+    //     }
+    //     catch(error) {
+    //         console.log(error);
+    //     }
+    //     finally {
+    //         setLoading(false);
+    //     }
+    // }
+    // fetchData()
+    //     // await axios.get(
+    //     //     'https://api.spotify.com/v1/me/playlists',
+    //     //     {
+    //     //         headers: {
+    //     //             Authorization: `Bearer ${token}`,
+    //     //         }
+    //     //     }
+    //     // ).then( (resp) => {
+    //     //     setPlaylists(resp.data);
+    //     //     console.log(resp.data);
+    //     // }).catch( (err) => {
+    //     //     console.log("PLAYLISTS API ERROR",JSON.stringify(err));
+    //     //     return;
+    //     // });
+    // },[]);
+
+
+        useEffect(() => {
+        setLoading(true);
+        fetch(playlists_uri, 
+            {
+                method: 'GET',
+                headers: {'Authorization': `Bearer ${token}`}
+            }).then(function (response) {
+            // The API call was successful!
+            return response.json();
+        }).then( (data) => {
+            console.log(`Playlist Available: ${data}`);
+            setPlaylists(data);
+            
+        }).catch( (err) =>{
+            console.warn(`Playlist API Error: ${err}`);
+            setLoading(false)
+        })
+    },[]);
