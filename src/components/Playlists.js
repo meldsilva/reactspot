@@ -2,22 +2,32 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Playlists = () => {
-    const [playlists, setPlaylists] = useState([]);
+    const [playlists, setPlaylists] = useState({});
+    const [loading, setLoading] = useState(false);
+
     const token = localStorage.getItem('token');
 
-    useEffect( async () => {
+    useEffect( () => {
+        setLoading(true);
+
+        async function fetchData(){
         try {
-            const resp = await axios.get('https://api.spotify.com/v1/me/playlists?limit=10', {
+            const response = await axios.get('https://api.spotify.com/v1/me/playlists?limit=10', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            setPlaylists(resp.data.items);
-            console.log(resp.data.items);
+            setPlaylists(response.data);
+            console.log(response.data);
         }
         catch(error) {
             console.log(error);
         }
+        finally {
+            setLoading(false);
+        }
+    }
+    fetchData()
         // await axios.get(
         //     'https://api.spotify.com/v1/me/playlists',
         //     {
@@ -34,10 +44,28 @@ const Playlists = () => {
         // });
     },[]);
 
+    if (loading) {
+        return <p>Data is loading...</p>;
+    }
+    // if (Object.keys(playlists).length === 0) {
+    //     return <p>No Data!</p>
+    // }
+
     return(
         <div>
-            <h3>Here are my playlists...</h3>
-            <p>{playlists.href}</p>
+            <h1>Here are my playlists...</h1>
+            <h2>href: {playlists.href}</h2>
+            {/* <h3>Offset: {playlists.offset}</h3>
+            <h4>Limit: {playlists.limit}</h4> */}
+            {/* <p>Playlist: {playlists.items[9].name}</p> */}
+            <ul>
+                {
+                    playlists.items.map((p) => {
+                        <li>{p.name}</li>
+                    })
+                }
+            </ul>
+            
         </div>
     );
       
