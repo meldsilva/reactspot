@@ -32,20 +32,6 @@ const Playlists = () => {
         }
     }
     fetchData()
-        // await axios.get(
-        //     'https://api.spotify.com/v1/me/playlists',
-        //     {
-        //         headers: {
-        //             Authorization: `Bearer ${token}`,
-        //         }
-        //     }
-        // ).then( (resp) => {
-        //     setPlaylists(resp.data);
-        //     console.log(resp.data);
-        // }).catch( (err) => {
-        //     console.log("PLAYLISTS API ERROR",JSON.stringify(err));
-        //     return;
-        // });
     },[token]);
 
     if (loading) {
@@ -56,8 +42,8 @@ const Playlists = () => {
     }
 
     return(
-        <div>
-            <h2>Playists</h2>
+        <div>                        
+            <h4 class="text-muted">Playlists</h4>
 
             <Row xs={1} md={5} className="g-6">
             {playlists.items.map((pl) =>  (
@@ -68,12 +54,12 @@ const Playlists = () => {
                     <Card.Body>
                     {/* <Card.Title style={ {fontSize: 14, fontFamily: "Arial"}} >{pl.name}</Card.Title> */}
                     <Card.Text style={ {fontSize: 13, fontFamily: "Arial"}}>
-                    <h6>{pl.name}</h6>
+                    <p>{pl.name}</p>
                     <li>Creator: {pl.owner.display_name}</li>
                     <li>
                         <a>Tracks: </a>
                         <a 
-                            href="#" onClick={() => {navigate("/tracks/0gYAPTIMVtbCanEhF4cBNF")}}>{pl.tracks.total}
+                            href="#" onClick={() => {navigate(`/tracks/${pl.name}/${pl.id}`)}}>{pl.tracks.total}
                         </a>
                     </li>
                     </Card.Text>
