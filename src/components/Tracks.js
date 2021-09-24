@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
-import { Container } from 'react-bootstrap';
+import { Container, Table } from 'react-bootstrap';
 
 function Tracks() {
 
@@ -25,6 +25,8 @@ function Tracks() {
             });
             setTracks(response.data);
             console.log(response.data);
+            console.log("Track ###", response.data.items[9].track.track_number);
+            
         }
         catch(error) {
             console.error(error);
@@ -46,21 +48,32 @@ function Tracks() {
     return (
         <div>
             <Container fluid>
-            <h4 class="text-muted">{playlistname}</h4>
-            <ul>
-                    {
-                        tracks.items.map( ( item ) => (
-                            <>
-                            <li>Track: {item.track.name}</li>
-                            <li>Album: {item.track.album.name}</li>
-                            <li>Artist: {item.track.artists[0].name}</li>
-                            <li>{item.added_at}</li>
-                            </>
-                        ))
-                            
-                        
-                    }
-                </ul>
+            <h4 className="text-muted">{playlistname}</h4>
+
+            <Table striped bordered hover size="sm" responsive>
+            <thead>
+                <tr>
+                <th>#</th>
+                <th>Track</th>
+                <th>Album</th>
+                <th>Artist</th>
+                <th>Date Added</th>
+                </tr>
+            </thead>
+            <tbody>
+            {
+                tracks.items.map( ( item ) => (
+                    <tr>
+                        <td key={Math.random()}>{item.track.track_number}</td>
+                        <td key={Math.random()}>{item.track.name}</td>
+                        <td key={Math.random()}>{item.track.album.name}</td>
+                        <td key={Math.random()}>{item.track.artists[0].name}</td>
+                        <td key={Math.random()}>{new Date(item.added_at).toLocaleString()}</td>
+                    </tr>
+                ))
+            }
+            </tbody>
+            </Table>
             </Container>            
             
      
