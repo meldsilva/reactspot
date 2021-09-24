@@ -7,12 +7,13 @@ const Playlists = () => {
 
     const token = localStorage.getItem('token');
 
+
     useEffect( () => {
         setLoading(true);
 
         async function fetchData(){
         try {
-            const response = await axios.get('https://api.spotify.com/v1/me/playlists?limit=10', {
+            const response = await axios.get('https://api.spotify.com/v1/me/playlists/', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -42,29 +43,40 @@ const Playlists = () => {
         //     console.log("PLAYLISTS API ERROR",JSON.stringify(err));
         //     return;
         // });
-    },[]);
+    },[token]);
 
     if (loading) {
         return <p>Data is loading...</p>;
     }
-    // if (Object.keys(playlists).length === 0) {
-    //     return <p>No Data!</p>
-    // }
+    if (Object.keys(playlists).length === 0) {
+        return <p>No Data!</p>
+    }
 
     return(
         <div>
-            <h1>Here are my playlists...</h1>
-            <h2>href: {playlists.href}</h2>
-            {/* <h3>Offset: {playlists.offset}</h3>
-            <h4>Limit: {playlists.limit}</h4> */}
-            {/* <p>Playlist: {playlists.items[9].name}</p> */}
-            <ul>
-                {
-                    playlists.items.map((p) => {
-                        <li>{p.name}</li>
-                    })
-                }
-            </ul>
+            <h5>Here are my playlists...</h5>
+   
+         
+            <table>
+            {
+                playlists.items.map((pl) => (
+                    
+                    <tr>
+                                            <td>
+                    <img 
+                    src={pl.images[0].url} 
+                    alt={pl.name}
+                    width="50" height="50"/> 
+                    </td>
+                    <td />
+                    <td>{pl.name}</td>
+                    <td>{pl.owner.display_name}</td>
+
+                    </tr>
+                ))
+            }
+            </table>
+     
             
         </div>
     );
