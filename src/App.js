@@ -11,14 +11,10 @@ import RedirectPage from "./components/RedirectPage";
 import SpotifyPage from './components/SpotifyPage';
 
 function App() {
-
-
   return (
     <>
-
         <Routes>
           <Route path="/" element={<Home />}/>
-         
             <Route path="spotifypage" element={<SpotifyPage />}> 
               <Route path="playlists" element={<Playlists />} />
               <Route path="podcasts" element={<Podcasts />} />
@@ -28,9 +24,7 @@ function App() {
           <Route path="callback" element={<RedirectPage />} />
           <Route path="*" element={<PageNotFound />} />
       </Routes>
-
     </>
   );
 }
-
 export default App;

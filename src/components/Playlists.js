@@ -1,19 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Card } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 const Playlists = () => {
     const [playlists, setPlaylists] = useState({});
     const [loading, setLoading] = useState(false);
-
     const token = localStorage.getItem('token');
-
 
     useEffect( () => {
         setLoading(true);
 
         async function fetchData(){
         try {
-            const response = await axios.get('https://api.spotify.com/v1/me/playlists/', {
+            const response = await axios.get('https://api.spotify.com/v1/me/playlists?limit=50', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -54,32 +54,29 @@ const Playlists = () => {
 
     return(
         <div>
-            <h5>Here are my playlists...</h5>
-   
-         
-            <table>
-            {
-                playlists.items.map((pl) => (
-                    
-                    <tr>
-                                            <td>
-                    <img 
-                    src={pl.images[0].url} 
-                    alt={pl.name}
-                    width="50" height="50"/> 
-                    </td>
-                    <td />
-                    <td>{pl.name}</td>
-                    <td>{pl.owner.display_name}</td>
+            <h2>Playists</h2>
 
-                    </tr>
-                ))
-            }
-            </table>
-     
-            
+            <Row xs={1} md={5} className="g-6">
+            {playlists.items.map((pl) =>  (
+                <Col>
+                <div className="card-grid" style={{height: "22rem"}}>
+                <Card className="card">
+                    <Card.Img variant="top" src={pl.images[0].url} />
+                    <Card.Body>
+                    {/* <Card.Title style={ {fontSize: 14, fontFamily: "Arial"}} >{pl.name}</Card.Title> */}
+                    <Card.Text style={ {fontSize: 13, fontFamily: "Arial"}}>
+                    <h6>{pl.name}</h6>
+                    <li>Creator: {pl.owner.display_name}</li>
+                    <li><a href={pl.tracks.href}>Tracks</a>: {pl.tracks.total}</li>
+                    </Card.Text>
+                    </Card.Body>
+                </Card>
+                <br/>
+                </div>
+                </Col>
+            ))}
+            </Row>
         </div>
     );
-      
 }
 export default Playlists;
