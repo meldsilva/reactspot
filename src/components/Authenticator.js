@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import Button from 'react-bootstrap/Button';
 
 const Authenticator = (props) => {
 
@@ -24,11 +25,8 @@ const Authenticator = (props) => {
 
     return(
         <div>
-            <button
-                type="button"
-                onClick={getauthcode}>
-                Authorize
-            </button>
+            <Button style={{backgroundColor: "#1DB954"}}
+            onClick={getauthcode}>Sign in</Button>
         </div>
     );
 }

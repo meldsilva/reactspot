@@ -8,23 +8,27 @@ import Albums from "./components/Albums";
 import Artists from "./components/Artists";
 import Podcasts from "./components/Podcasts";
 import RedirectPage from "./components/RedirectPage";
-import Authenticator from "./components/Authenticator";
+import SpotifyPage from './components/SpotifyPage';
 
 function App() {
 
 
   return (
     <>
-      <Authenticator />
+
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="playlists" element={<Playlists />} />
-          <Route path="podcasts" element={<Podcasts />} />
-          <Route path="artists" element={<Artists />} />
-          <Route path="albums" element={<Albums />} />
+          <Route path="/" element={<Home />}/>
+         
+            <Route path="spotifypage" element={<SpotifyPage />}> 
+              <Route path="playlists" element={<Playlists />} />
+              <Route path="podcasts" element={<Podcasts />} />
+              <Route path="artists" element={<Artists />} />
+              <Route path="albums" element={<Albums />} />
+            </Route>
           <Route path="callback" element={<RedirectPage />} />
           <Route path="*" element={<PageNotFound />} />
       </Routes>
+
     </>
   );
 }

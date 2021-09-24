@@ -1,16 +1,21 @@
-import {Link, Outlet} from "react-router-dom";
+import Authenticator from "./Authenticator";
+import home from '../assets/images/home-red.jpg';
+import SpotifyPage from "./SpotifyPage";
+
 
 const Home = (props) => {
-
     return(
         <>
-        <h2>Home</h2>
-        <nav>
-            <Link to="playlists">Playlists</Link>
-            <Link to="podcasts">Podcasts</Link>
-            <Link to="artists">Artists</Link>
-            <Link to="albums">Albums</Link>
-        </nav>
+        <header style={{backgroundColor: "black", height: "30%"}}>
+            <h2>Spotify Dashboard</h2>
+            <Authenticator />
+
+
+        </header>
+        <body>
+        <img src={home} style={{width: "100%", height: "70%"}}
+            alt="home"/>
+        </body>
         </>
     );
 }

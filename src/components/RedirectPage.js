@@ -49,7 +49,7 @@ const RedirectPage = () => {
                     setToken(resp.data.access_token);
                     localStorage.setItem('token', resp.data.access_token);
                     //Redirect to Home page here along with the token as a prop
-                    navigate("/");
+                    navigate("/spotifypage");
                 })
                 .catch( (err) => {
                     console.log("TOKEN-API POST ERROR: ",err);

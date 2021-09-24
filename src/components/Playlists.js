@@ -46,7 +46,7 @@ const Playlists = () => {
     },[token]);
 
     if (loading) {
-        return <p>Data is loading...</p>;
+        return <h3>Data is loading...</h3>;
     }
     if (Object.keys(playlists).length === 0) {
         return <p>No Data!</p>
