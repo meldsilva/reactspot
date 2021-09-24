@@ -9,6 +9,7 @@ import Artists from "./components/Artists";
 import Podcasts from "./components/Podcasts";
 import RedirectPage from "./components/RedirectPage";
 import SpotifyPage from './components/SpotifyPage';
+import Tracks from './components/Tracks';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
               <Route path="artists" element={<Artists />} />
               <Route path="albums" element={<Albums />} />
             </Route>
+
+          <Route path="tracks/:trackid" element={<Tracks />} />
           <Route path="callback" element={<RedirectPage />} />
           <Route path="*" element={<PageNotFound />} />
       </Routes>

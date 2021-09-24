@@ -2,11 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router";
 
 const Playlists = () => {
     const [playlists, setPlaylists] = useState({});
     const [loading, setLoading] = useState(false);
     const token = localStorage.getItem('token');
+    const navigate = useNavigate();
+
 
     useEffect( () => {
         setLoading(true);
@@ -67,7 +70,12 @@ const Playlists = () => {
                     <Card.Text style={ {fontSize: 13, fontFamily: "Arial"}}>
                     <h6>{pl.name}</h6>
                     <li>Creator: {pl.owner.display_name}</li>
-                    <li><a href={pl.tracks.href}>Tracks</a>: {pl.tracks.total}</li>
+                    <li>
+                        <a>Tracks: </a>
+                        <a 
+                            href="#" onClick={() => {navigate("/tracks/0gYAPTIMVtbCanEhF4cBNF")}}>{pl.tracks.total}
+                        </a>
+                    </li>
                     </Card.Text>
                     </Card.Body>
                 </Card>
