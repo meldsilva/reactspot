@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import LoadingPage from "./LoadingPage";
 
 const Playlists = () => {
     const [playlists, setPlaylists] = useState({});
@@ -35,7 +36,7 @@ const Playlists = () => {
     },[token]);
 
     if (loading) {
-        return <h3>Data is loading...</h3>;
+        return <LoadingPage />;
     }
     if (Object.keys(playlists).length === 0) {
         return <p>No Data!</p>
@@ -43,10 +44,10 @@ const Playlists = () => {
 
     return(
         <div>                        
-            <h4 class="text-muted">Playlists</h4>
+            <h4 className="text-muted">Playlists</h4>
 
             <Row xs={1} md={5} className="g-6">
-            {playlists.items.map((pl) =>  (
+            {playlists.items.map((pl,idx) =>  (
                 <Col>
                 <div className="card-grid" style={{height: "22rem"}}>
                 <Card className="card">
@@ -54,7 +55,7 @@ const Playlists = () => {
                     <Card.Body>
                     {/* <Card.Title style={ {fontSize: 14, fontFamily: "Arial"}} >{pl.name}</Card.Title> */}
                     <Card.Text style={ {fontSize: 13, fontFamily: "Arial"}}>
-                    <p>{pl.name}</p>
+                    {pl.name}
                     <li>Creator: {pl.owner.display_name}</li>
                     <li>
                         <a>Tracks: </a>

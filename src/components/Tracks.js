@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
-import { Container, Table } from 'react-bootstrap';
+// import { Container, Table } from 'react-bootstrap';
+import LoadingPage from './LoadingPage';
+import Table from './Tracks.Table';
 
 function Tracks() {
 
@@ -10,8 +12,61 @@ function Tracks() {
     const token = localStorage.getItem('token');
     const uri = `https://api.spotify.com/v1/playlists/${playlistid}/tracks`;
 
+   const adjustData = (d) => {
+    d.map(item => {
+        item.added_at = new Date(item.added_at).toLocaleString();
+        // console.log("Artists are", item.artists[0].name);
+        let arti
+        item.artists.array.forEach(element => {
+            arti.push(element.artists.name)
+        });
+    }); 
+    d.push
+    return d;
+   }
+
+    const columns = React.useMemo(
+        () => [ 
+                    {
+                        Header: 'Track',
+                        accessor: 'track.name'
+                    },
+                    {
+                        Header: 'Album',
+                        accessor: 'track.album.name'
+                    },
+                    {
+                        Header: 'Artist',
+                        accessor: 'track.artists.name'
+                    },
+                    {
+                        Header: 'Date Added',
+                        accessor: 'added_at'.toLocaleString()
+                    },
+            // {
+            //     Header: 'Header Name',
+            //     columns:[
+            //         {
+            //             Header: 'Track',
+            //             accessor: 'track.name'
+            //         },
+            //         {
+            //             Header: 'Album',
+            //             accessor: 'track.album.name'
+            //         },
+            //         {
+            //             Header: 'Date Added',
+            //             accessor: 'added_at'
+            //         },
+            //     ]
+            // }
+        ],
+        []
+    );
+
     const [loading, setLoading] = useState(false);
-    const [tracks, setTracks] = useState({});
+    const [tracksResponse, setTracksResponse] = useState({});
+    const [tracks, setTracks] = useState([]);
 
     useEffect( () => {
         setLoading(true);
@@ -23,10 +78,13 @@ function Tracks() {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            setTracks(response.data);
-            console.log(response.data);
-            console.log("Track ###", response.data.items[9].track.track_number);
-            
+           
+            setTracksResponse(response.data);
+            setTracks( adjustData( response.data.items) );
+          
+
+            console.log("Tracks Response", response.data);
+            console.log("Tracks List",response.data.items);
         }
         catch(error) {
             console.error(error);
@@ -39,49 +97,20 @@ function Tracks() {
     },[token]);
 
     if (loading) {
-        return <h3>Data is loading...</h3>;
+        return <LoadingPage />;
     }
-    if (Object.keys(tracks).length === 0) {
+    // if (Object.keys(tracks).length === 0) {
+    //     return <p>No Data!</p>
+    // }
+
+    if (tracks.length === 0){
         return <p>No Data!</p>
     }
 
     return (
         <div>
-            <Container fluid>
             <h4 className="text-muted">{playlistname}</h4>
-
-            <Table striped bordered hover size="sm" responsive>
-            <thead>
-                <tr>
-                <th>#</th>
-                <th>Track</th>
-                <th>Album</th>
-                <th>Artist</th>
-                <th>Date Added</th>
-                </tr>
-            </thead>
-            <tbody>
-            {
-                tracks.items.map( ( item ) => (
-                    <tr>
-                        <td key={Math.random()}>{item.track.track_number}</td>
-                        <td key={Math.random()}>{item.track.name}</td>
-                        <td key={Math.random()}>{item.track.album.name}</td>
-                        <td key={Math.random()}>{item.track.artists[0].name}</td>
-                        <td key={Math.random()}>{new Date(item.added_at).toLocaleString()}</td>
-                    </tr>
-                ))
-            }
-            </tbody>
-            </Table>
-            </Container>            
-            
-     
-            
-{/*              
-            <p>Track: {tracks.items[1].track.name}</p>
-            <p>Album: {tracks.items[1].track.album.name}</p>
-            <p>Artist: {tracks.items[1].track.artists[0].name}</p> */}
+            <Table columns={columns} data={tracks} />
         </div>
     )
 }

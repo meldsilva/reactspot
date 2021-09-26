@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button';
 
-const Authenticator = (props) => {
-
+const Authenticator = () => {
     // Constants
     const client_id = process.env.REACT_APP_CLIENT_ID;
     const callback_uri = process.env.REACT_APP_CALLBACK_URI;
@@ -10,7 +9,6 @@ const Authenticator = (props) => {
     //add scopes here
 
     // States
-    const [user, setUsername] = useState("");
     const [auth_code, setAuthCode] = useState(null);
     const [token, setToken] = useState(null);
     
