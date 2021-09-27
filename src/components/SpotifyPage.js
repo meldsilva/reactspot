@@ -1,9 +1,10 @@
+import React from "react";
 import {Outlet} from "react-router-dom";
 import { StyledLink, StyledNav } from "./SpotifyPageStyles";
 
 const SpotifyPage = () => {
     return(
-        <>
+        <React.Fragment>
         <div style={{backgroundColor: "black", height: "30%"}}>
         <h2>Spotify Page</h2>
         <StyledNav>
@@ -16,7 +17,7 @@ const SpotifyPage = () => {
         <div>
             <Outlet />
         </div>
-        </>
+        </React.Fragment>
     );
 }
 export default SpotifyPage;

@@ -6,11 +6,10 @@ import {BrowserRouter as Router} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-    <>
- 
-    <Router>
+    <React.Fragment>
+     <Router>
         <App />
     </Router>
-    </>,
+    </React.Fragment>,
     document.getElementById('root')
 );

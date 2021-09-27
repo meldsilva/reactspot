@@ -1,9 +1,10 @@
+import React from "react";
 import { Card } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 
 const Albums = (props) => {
     return(
-        <>
+        <React.Fragment>
         <h2>Albums</h2>
 
         <Row xs={1} md={4} className="g-4">
@@ -22,7 +23,7 @@ const Albums = (props) => {
             </Col>
         ))}
         </Row>
-</>
+        </React.Fragment>
 
     );
 }

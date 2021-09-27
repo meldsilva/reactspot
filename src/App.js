@@ -1,3 +1,4 @@
+import React from "react";
 // import logo from './logo.svg';
 // import './App.css';
 import {Route, Routes} from "react-router-dom";
@@ -13,7 +14,7 @@ import Tracks from './components/Tracks';
 
 function App() {
   return (
-    <>
+    <React.Fragment>
         <Routes>
           <Route path="/" element={<Home />}/>
             <Route path="spotifypage" element={<SpotifyPage />}> 
@@ -27,7 +28,7 @@ function App() {
           <Route path="callback" element={<RedirectPage />} />
           <Route path="*" element={<PageNotFound />} />
       </Routes>
-    </>
+    </React.Fragment>
   );
 }
 export default App;
