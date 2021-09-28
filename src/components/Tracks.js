@@ -11,17 +11,22 @@ function Tracks() {
     const playlistname = useParams().playlistname;
     const token = localStorage.getItem('token');
     const uri = `https://api.spotify.com/v1/playlists/${playlistid}/tracks`;
+   
+    // Function to manipulate api response to make it react-table friendly
+    // 1. Convert UTC date to current locale string
+    // 2. Create a list of artist names array in artistnames for each track object
+    const adjustData = (d) => {
 
-   const adjustData = (d) => {
-    d.map(item => {
-        item.added_at = new Date(item.added_at).toLocaleString();
-        // console.log("Artists are", item.artists[0].name);
-        // let arti
-        // item.artists.array.forEach(element => {
-        //     arti.push(element.artists.name)
-        // });
-    }); 
-    return d;
+        // iterate through each track object in array
+        d.map(item => {
+            item.added_at = new Date(item.added_at).toLocaleString();
+            item.artistnames = []; 
+            item.track.artists.map( (t) => {
+                item.artistnames.push(t.name);
+                // console.log("Artist is: ", t.name);
+            });
+        }); 
+        return d;//Return manupulated tracks object array
    }
 
     const columns = React.useMemo(
@@ -36,30 +41,13 @@ function Tracks() {
                     },
                     {
                         Header: 'Artist',
-                        accessor: 'track.artists.name'
+                        accessor: 'artistnames'
                     },
                     {
                         Header: 'Date Added',
                         accessor: 'added_at'.toLocaleString()
                     },
-            // {
-            //     Header: 'Header Name',
-            //     columns:[
-            //         {
-            //             Header: 'Track',
-            //             accessor: 'track.name'
-            //         },
-            //         {
-            //             Header: 'Album',
-            //             accessor: 'track.album.name'
-            //         },
-            //         {
-            //             Header: 'Date Added',
-            //             accessor: 'added_at'
-            //         },
-            //     ]
-            // }
-        ],
+         ],
         []
     );
 
@@ -80,9 +68,8 @@ function Tracks() {
            
             setTracksResponse(response.data);
             setTracks( adjustData( response.data.items) );
-
-            console.log("Tracks Response", response.data);
-            console.log("Tracks List",response.data.items);
+            // console.log("Tracks Response", response.data);
+            // console.log("Tracks List",response.data.items);
         }
         catch(error) {
             console.error(error);
