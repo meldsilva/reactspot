@@ -50,7 +50,7 @@ const Playlists = () => {
             <Row xs={1} md={5} className="g-6">
             {playlists.items.map((pl,idx) =>  (
                 <Col>
-                <div className="card-grid" style={{height: "22rem"}}>
+                <div className="card-grid" style={{height: "auto"}}>
                 <Card className="card">
                     <Card.Img variant="top" src={pl.images[0].url} />
                     <Card.Body>
@@ -61,7 +61,7 @@ const Playlists = () => {
                     <li>
                         <a>Tracks: </a>
                         <a 
-                            href="#" onClick={() => {navigate(`/tracks/${pl.name}/${pl.id}`)}}>{pl.tracks.total}
+                            href="" onClick={() => {navigate(`/tracks/${pl.name}/${pl.id}`)}}>{pl.tracks.total}
                         </a>
                     </li>
                     </Card.Text>
