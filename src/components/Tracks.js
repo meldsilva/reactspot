@@ -16,12 +16,11 @@ function Tracks() {
     d.map(item => {
         item.added_at = new Date(item.added_at).toLocaleString();
         // console.log("Artists are", item.artists[0].name);
-        let arti
-        item.artists.array.forEach(element => {
-            arti.push(element.artists.name)
-        });
+        // let arti
+        // item.artists.array.forEach(element => {
+        //     arti.push(element.artists.name)
+        // });
     }); 
-    d.push
     return d;
    }
 
@@ -81,7 +80,6 @@ function Tracks() {
            
             setTracksResponse(response.data);
             setTracks( adjustData( response.data.items) );
-          
 
             console.log("Tracks Response", response.data);
             console.log("Tracks List",response.data.items);
