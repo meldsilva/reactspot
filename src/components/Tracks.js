@@ -15,47 +15,54 @@ function Tracks() {
     // Function to manipulate api response to make it react-table friendly
     // 1. Convert UTC date to current locale string
     // 2. Create a list of artist names array in artistnames for each track object
-    const adjustData = (d) => {
-
+    const adjustData = (tracks) => {
         // iterate through each track object in array
-        d.map(item => {
-            item.added_at = new Date(item.added_at).toLocaleString();
-            item.artistnames = []; 
-            item.track.artists.map( (t) => {
-                item.artistnames.push(t.name);
-                // console.log("Artist is: ", t.name);
+        tracks.map(track => {
+            track.added_at = new Date(track.added_at).toLocaleString();
+            track.artistnames = [];
+            track.track.artists.map( (artist) => {
+                track.artistnames.push(artist.name);
+                // console.log("Artist is: ", artist.name);
             });
+            // console.log("Artist List is: ", track.artistnames.slice());
         }); 
-        return d;//Return manupulated tracks object array
+        return tracks;//Return manupulated tracks object array
    }
 
     const columns = React.useMemo(
         () => [ 
-                    {
-                        Header: 'Track',
-                        accessor: 'track.name'
-                    },
-                    {
-                        Header: 'Album',
-                        accessor: 'track.album.name'
-                    },
-                    {
-                        Header: 'Artist',
-                        accessor: 'artistnames'
-                    },
-                    {
-                        Header: 'Date Added',
-                        accessor: 'added_at'.toLocaleString()
-                    },
+                {
+                    Header: 'Track',
+                    accessor: 'track.name'
+                },
+                {
+                    Header: 'Album',
+                    accessor: 'track.album.name'
+                },
+                {
+                    Header: 'Artist',
+                    accessor: 'artistnames',
+                    // Cell: ({ cell: { value } }) => <ArtistName artists={value} />,
+
+                    Cell: ({ cell: { value } }) => {
+                        return (
+                          value.join(', ')
+                        );
+                    }          
+                },
+                {
+                    Header: 'Date Added',
+                    accessor: 'added_at'.toLocaleString()
+                },
          ],
         []
     );
 
     const [loading, setLoading] = useState(false);
-    const [tracksResponse, setTracksResponse] = useState({});
     const [tracks, setTracks] = useState([]);
 
     useEffect( () => {
+
         setLoading(true);
 
         async function fetchData(){
@@ -66,13 +73,12 @@ function Tracks() {
                 }
             });
            
-            setTracksResponse(response.data);
             setTracks( adjustData( response.data.items) );
             // console.log("Tracks Response", response.data);
             // console.log("Tracks List",response.data.items);
         }
         catch(error) {
-            console.error(error);
+            console.log(error);
         }
         finally {
             setLoading(false);
@@ -100,4 +106,20 @@ function Tracks() {
     )
 }
 
+// Custom component to render Artist Names
+// const ArtistName = (props) => {
+//     // Loop through the array and create a badge-like component instead of a comma-separated string
+//     console.log("props.artists",props.artists);
+//     let commas;
+//     return (
+//         props.artists.map( (name, key) => 
+//         {
+//             <span key={key} className="badge">
+//             {commas = commas+name}
+//             </span>
+//         })
+//     )
+// }
+
 export default Tracks;
+
