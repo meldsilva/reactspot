@@ -49,7 +49,7 @@ const Playlists = () => {
 
             <Row xs={1} md={5} className="g-6">
             {playlists.items.map((pl,idx) =>  (
-                <Col>
+                <Col key={Math.random()}>
                 <div className="card-grid" style={{height: "auto"}}>
                 <Card className="card">
                     <Card.Img variant="top" src={pl.images[0].url} />
@@ -57,10 +57,10 @@ const Playlists = () => {
                     {/* <Card.Title style={ {fontSize: 14, fontFamily: "Arial"}} >{pl.name}</Card.Title> */}
                     <Card.Text style={ {fontSize: 13, fontFamily: "Arial"}}>
                     {pl.name}
-                    <li>Creator: {pl.owner.display_name}</li>
+                    <li> Creator: {pl.owner.display_name}</li>
                     <li>
                         <a>Tracks: </a>
-                        <a 
+                        <a
                             href="" onClick={() => {navigate(`/tracks/${pl.name}/${pl.id}`)}}>{pl.tracks.total}
                         </a>
                     </li>
