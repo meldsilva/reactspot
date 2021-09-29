@@ -17,10 +17,10 @@ function Tracks() {
     // 2. Create a list of artist names array in artistnames for each track object
     const adjustData = (tracks) => {
         // iterate through each track object in array
-        tracks.map(track => {
+        tracks.forEach(track => {
             track.added_at = new Date(track.added_at).toLocaleString();
             track.artistnames = [];
-            track.track.artists.map( (artist) => {
+            track.track.artists.forEach( (artist) => {
                 track.artistnames.push(artist.name);
                 // console.log("Artist is: ", artist.name);
             });
