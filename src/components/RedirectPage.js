@@ -17,43 +17,47 @@ const RedirectPage = () => {
         const stringToEncode = `${client_id}:${client_secret}`;
         return Buffer.from(stringToEncode).toString("base64");
     };    
-
     const navigate = useNavigate();
+
     //--------------------------
     // API -- Auth Code call
     //--------------------------
-    useEffect(() => {
-        if(!getAuthCode(window.location.href)) {
-            return;
-        }
+    useEffect( () => {
+
         setAuthCode(getAuthCode(window.location.href));
 
-        const request_body = qs.stringify(
-        {
-            'grant_type': 'authorization_code',
-            'code': auth_code,
-            'redirect_uri': callback_uri,
-        });
-        const request_header = {
-            headers: {
-                Accept: "application/json",
-                Authorization: `Basic ${encodeAuthorizationToBase64()}`,
-            },
-        };
+        async function fetchData() {
+            const request_body = qs.stringify(
+            {
+                'grant_type': 'authorization_code',
+                'code': auth_code,
+                'redirect_uri': callback_uri,
+            });
+            const request_header = {
+                headers: {
+                    Accept: "application/json",
+                    Authorization: `Basic ${encodeAuthorizationToBase64()}`,
+                },
+            };
 
-        axios.post(
-            api_endpoint,
-            request_body,
-            request_header).then( (resp) => {
-                    localStorage.setItem('token', resp.data.access_token);
-                    //Redirect to Home page here along with the token as a prop
-                    navigate("/spotifypage");
-                })
-                .catch( (err) => {
-                    console.log("TOKEN-API POST ERROR: ",err);
-                });
+            if (auth_code) {
+            await axios.post(
+                api_endpoint,
+                request_body,
+                request_header).then( (resp) => {
+                        localStorage.setItem('token', resp.data.access_token);
+                        //Redirect to Home page here along with the token as a prop
+                        navigate("/spotifypage");
+                    })
+                    .catch( (err) => {
+                        console.log("TOKEN-API POST ERROR: ",err);
+                    });
+                }
+    }
+    fetchData();
     },[auth_code]);
   
+    //Nothing to render
     return(
        null
     );
