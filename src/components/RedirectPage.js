@@ -12,7 +12,6 @@ const RedirectPage = () => {
     const api_endpoint = process.env.REACT_APP_TOKEN_ENDPOINT;
 
     const[auth_code, setAuthCode] = useState(null);
-    const[token, setToken] = useState(null);
     
     const encodeAuthorizationToBase64 = () => {
         const stringToEncode = `${client_id}:${client_secret}`;
@@ -46,7 +45,6 @@ const RedirectPage = () => {
             api_endpoint,
             request_body,
             request_header).then( (resp) => {
-                    setToken(resp.data.access_token);
                     localStorage.setItem('token', resp.data.access_token);
                     //Redirect to Home page here along with the token as a prop
                     navigate("/spotifypage");
