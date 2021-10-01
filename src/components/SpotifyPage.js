@@ -1,5 +1,6 @@
 import React from "react";
 import {Outlet} from "react-router-dom";
+import { Container } from "react-bootstrap";
 import { StyledLink, StyledNav } from "./SpotifyPageStyles";
 
 const SpotifyPage = () => {
@@ -14,9 +15,9 @@ const SpotifyPage = () => {
             <StyledLink to="albums">Albums</StyledLink> 
         </StyledNav>
         </div>
-        <div>
+        <Container fluid="xl">
             <Outlet />
-        </div>
+        </Container>
         </React.Fragment>
     );
 }

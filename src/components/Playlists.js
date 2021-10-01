@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import LoadingPage from "./LoadingPage";
 
@@ -24,7 +23,7 @@ const Playlists = () => {
                 }
             });
             setPlaylists(response.data);
-            console.log(response.data);
+            // console.log(response.data);
         }
         catch(error) {
             console.log(error);
@@ -47,9 +46,10 @@ const Playlists = () => {
         <div>                        
             <h4 className="text-muted">Playlists</h4>
 
+            
             <Row xs={1} md={5} className="g-6">
             {playlists.items.map((pl,idx) =>  (
-                <Col key={Math.random()}>
+                <Col key={idx}>
                 <div className="card-grid" style={{height: "auto"}}>
                 <Card className="card">
                     <Card.Img variant="top" src={pl.images[0].url} />
@@ -72,6 +72,8 @@ const Playlists = () => {
                 </Col>
             ))}
             </Row>
+            
+
         </div>
     );
 }
