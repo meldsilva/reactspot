@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
-// import { Container, Table } from 'react-bootstrap';
+import { Badge } from 'react-bootstrap';
 import LoadingPage from './LoadingPage';
 import Table from './Tracks.Table';
 
@@ -46,7 +46,8 @@ function Tracks() {
 
                     Cell: ({ cell: { value } }) => {
                         return (
-                          value.join(', ')
+                            <ArtistName artistnames={value} />
+                        //   value.join(', ')
                         );
                     }          
                 },
@@ -107,19 +108,27 @@ function Tracks() {
 }
 
 // Custom component to render Artist Names
-// const ArtistName = (props) => {
-//     // Loop through the array and create a badge-like component instead of a comma-separated string
-//     console.log("props.artists",props.artists);
-//     let commas;
-//     return (
-//         props.artists.map( (name, key) => 
-//         {
-//             <span key={key} className="badge">
-//             {commas = commas+name}
-//             </span>
-//         })
-//     )
-// }
+const ArtistName = (artistnames) => {
+    // Loop through the array and create a badge-like component instead of a comma-separated string
+    // console.log("Artistnames: ", artistnames);
+ 
+    const displayArtist = (event) => {
+        console.log(event);
+        alert(event.target.innerText);
+    }
+
+    return (        
+        artistnames.artistnames.map( (name, idx) => (
+            <>
+            <Badge pill key={idx}
+            bg={idx % 2 === 0 ?  "dark" : "secondary"} 
+            onClick={displayArtist}>
+            {name}
+            </Badge>
+            </>
+          ))
+    )
+}
 
 export default Tracks;
 

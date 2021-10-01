@@ -1,4 +1,5 @@
 Todos:
+Tracks - artist href / modal display
 Refresh token
 Infinite scroll with API offset call
 
