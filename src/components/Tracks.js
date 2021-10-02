@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router';
+import { useParams } from 'react-router';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import LoadingPage from './LoadingPage';
 import Table from './Tracks.Table';
-import Artist from './Artist';
+// import Artist from './Artist';
 import useModal from './customhooks/useModal';
 import Modal from './Modal';
 
@@ -90,19 +90,49 @@ function Tracks() {
 const ArtistName = (artists) => {
     // Loop through the array and create a badge-like component instead of a comma-separated string
     // console.log("Artistnames: ", artistnames);
-    // const navigate = useNavigate();
-
+    const [loading, setLoading] = useState(false);
+    const [artist, setArtist] = useState({});
+    const token = localStorage.getItem('token');
     const {isShowing, toggle} = useModal();
-    // // Modal states
-    // const [show, setShow] = useState(false);
-    // const openModal = () => setShow(true);
-    // const closeModal = () => setShow(false);
+
+    // const uri = 'https://api.spotify.com/v1/artists/1sXbwvCQLGZnaH0Jp2HTVc';
+    const uri = `https://api.spotify.com/v1/artists/${artists.artistid}`;
+
+    useEffect( () => {
+        setLoading(true);
+
+        async function fetchData(){
+        try {
+            const response = await axios.get(uri, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+           
+            setArtist(response.data);
+            console.log("Artists Response", response.data);
+        }
+        catch(error) {
+            console.log(error);
+        }
+        finally {
+            setLoading(false);
+        }
+    }
+    fetchData()
+    },[]);
+
+
+
 
     const displayArtist = (name, href) => {
         console.log(name);
         // alert(event.target.innerText);
     }
-
+    
+    if (loading) {
+        return <LoadingPage />;
+    }
 
 // {/* onClick={() => {navigate(`/artists/${artist.id}`)}} */}
     return (        
@@ -115,7 +145,8 @@ const ArtistName = (artists) => {
             </Button>
             <Modal 
             isShowing={isShowing}
-            hide={toggle} />            
+            hide={toggle} 
+            artistdata={artist}/>            
             </React.Fragment>
           ))
     )
