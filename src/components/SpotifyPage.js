@@ -11,7 +11,7 @@ const SpotifyPage = () => {
         <StyledNav>
             <StyledLink to="playlists">Playlists</StyledLink>
             <StyledLink to="podcasts">Podcasts</StyledLink>
-            <StyledLink to="artists">Artists</StyledLink>
+            {/* <StyledLink to="artists">Artists</StyledLink> */}
             <StyledLink to="albums">Albums</StyledLink> 
         </StyledNav>
         </div>

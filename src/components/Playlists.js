@@ -11,7 +11,6 @@ const Playlists = () => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
 
-
     useEffect( () => {
         setLoading(true);
 

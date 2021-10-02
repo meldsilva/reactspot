@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import axios from 'axios';
-import { Badge } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import LoadingPage from './LoadingPage';
 import Table from './Tracks.Table';
+import Artist from './Artist';
+import useModal from './customhooks/useModal';
+import Modal from './Modal';
 
 function Tracks() {
 
@@ -11,23 +14,6 @@ function Tracks() {
     const playlistname = useParams().playlistname;
     const token = localStorage.getItem('token');
     const uri = `https://api.spotify.com/v1/playlists/${playlistid}/tracks`;
-   
-    // Function to manipulate api response to make it react-table friendly
-    // 1. Convert UTC date to current locale string
-    // 2. Create a list of artist names array in artistnames for each track object
-    const adjustData = (tracks) => {
-        // iterate through each track object in array
-        tracks.forEach(track => {
-            track.added_at = new Date(track.added_at).toLocaleString();
-            track.artistnames = [];
-            track.track.artists.forEach( (artist) => {
-                track.artistnames.push(artist.name);
-                // console.log("Artist is: ", artist.name);
-            });
-            // console.log("Artist List is: ", track.artistnames.slice());
-        }); 
-        return tracks;//Return manupulated tracks object array
-   }
 
     const columns = React.useMemo(
         () => [ 
@@ -41,15 +27,8 @@ function Tracks() {
                 },
                 {
                     Header: 'Artist',
-                    accessor: 'artistnames',
-                    // Cell: ({ cell: { value } }) => <ArtistName artists={value} />,
-
-                    Cell: ({ cell: { value } }) => {
-                        return (
-                            <ArtistName artistnames={value} />
-                        //   value.join(', ')
-                        );
-                    }          
+                    accessor: 'track.artists',
+                    Cell: ({ cell: { value } }) => <ArtistName artists={value} />        
                 },
                 {
                     Header: 'Date Added',
@@ -74,7 +53,7 @@ function Tracks() {
                 }
             });
            
-            setTracks( adjustData( response.data.items) );
+            setTracks(response.data.items);
             // console.log("Tracks Response", response.data);
             // console.log("Tracks List",response.data.items);
         }
@@ -86,7 +65,7 @@ function Tracks() {
         }
     }
     fetchData()
-    },[token]);
+    },[token, uri]);
 
     if (loading) {
         return <LoadingPage />;
@@ -108,24 +87,36 @@ function Tracks() {
 }
 
 // Custom component to render Artist Names
-const ArtistName = (artistnames) => {
+const ArtistName = (artists) => {
     // Loop through the array and create a badge-like component instead of a comma-separated string
     // console.log("Artistnames: ", artistnames);
- 
-    const displayArtist = (event) => {
-        console.log(event);
-        alert(event.target.innerText);
+    // const navigate = useNavigate();
+
+    const {isShowing, toggle} = useModal();
+    // // Modal states
+    // const [show, setShow] = useState(false);
+    // const openModal = () => setShow(true);
+    // const closeModal = () => setShow(false);
+
+    const displayArtist = (name, href) => {
+        console.log(name);
+        // alert(event.target.innerText);
     }
 
+
+// {/* onClick={() => {navigate(`/artists/${artist.id}`)}} */}
     return (        
-        artistnames.artistnames.map( (name, idx) => (
-            <>
-            <Badge pill key={idx}
-            bg={idx % 2 === 0 ?  "dark" : "secondary"} 
-            onClick={displayArtist}>
-            {name}
-            </Badge>
-            </>
+        artists.artists.map( (artist, idx) => (
+            <React.Fragment>
+            <Button variant="link" 
+                key={idx}
+                onClick={toggle}>
+                    {artist.name}
+            </Button>
+            <Modal 
+            isShowing={isShowing}
+            hide={toggle} />            
+            </React.Fragment>
           ))
     )
 }
