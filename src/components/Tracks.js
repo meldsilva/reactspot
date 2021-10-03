@@ -25,7 +25,7 @@ function Tracks() {
                 {
                     Header: 'Artist',
                     accessor: 'track.artists',
-                    Cell: ({ cell: { value } }) => <ArtistName key={Math.random} artists={value} />        
+                    Cell: ({ cell: { value } }) => <ArtistName key={Math.random.toString()} artists={value} />        
                 },
                 {
                     Header: 'Date Added',

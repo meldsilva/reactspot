@@ -20,7 +20,7 @@ const ArtistName = (artists) => {
         artists.artists.map( (artist, idx) => (
         <>
             <Button variant="link" 
-                key={idx}
+                key={idx.toString()}
                 onClick={doModal}>
                     {artist.name}
 
@@ -29,7 +29,7 @@ const ArtistName = (artists) => {
                 show={show}
                 closeModal={hideModal}
                 artistid={artist.id} 
-                key={Math.random}
+                key={Math.random.toString()}
             />
         </>
         ))
