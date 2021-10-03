@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { Card, Button, Badge,  Modal as BootModal } from "react-bootstrap";
+import { Card, ProgressBar, Badge,  Modal as BootModal } from "react-bootstrap";
 import axios from "axios";
 import { capitalize } from "../utils/helpers"
 import img404 from '../assets/images/img_not_found.gif';
@@ -73,23 +73,22 @@ const ArtistModal = ({ show, closeModal, artistid }) => {
                   variant="top" 
                   src= {artist.images.length > 0 ? artist.images[0].url : img404} />
                 <Card.Body>
-                  <Card.Text style={{ fontSize: 15, fontFamily: "Arial" }}>
-                    <span>Popularity: {artist.popularity.toLocaleString()} </span>
-                    <br/>
+                  <Card.Text style={{ fontSize: 13, fontFamily: "Arial" }}>
                     <span>Followers: {artist.followers.total.toLocaleString()} </span>
-                    <br/>
-                    <span>Type: {capitalize(artist.type)} </span>
+                    <ProgressBar now={artist.popularity} label={`Popularity ${artist.popularity}%`} />
+
                     <br/>
                     {
                       artist.genres.map( (genre, idx)  =>
                         <span style={{padding: 1}}>
                         <Badge pill 
                         key={idx}
-                        bg={idx % 2 === 0  ? 'primary' : 'success'}>
+                        bg={idx % 2 === 0  ? 'primary' : 'secondary'}>
                           {`${capitalize(genre)}`}</Badge>
                         </span>
                       )
                     }
+                    {/* <br/> */}
                   </Card.Text>
                 </Card.Body>
               </Card>
