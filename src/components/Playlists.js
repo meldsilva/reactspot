@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import LoadingPage from "./LoadingPage";
 
@@ -58,10 +58,11 @@ const Playlists = () => {
                     {pl.name}
                     <li> Creator: {pl.owner.display_name}</li>
                     <li>
-                        <a>Tracks: </a>
-                        <a
-                            href="" onClick={() => {navigate(`/tracks/${pl.name}/${pl.id}`)}}>{pl.tracks.total}
-                        </a>
+                        Tracks:
+                        <Button variant="link" style={{padding: 2}}
+                                onClick={() => {navigate(`/tracks/${pl.name}/${pl.id}`)}}>{pl.tracks.total}
+                        </Button>
+                        
                     </li>
                     </Card.Text>
                     </Card.Body>

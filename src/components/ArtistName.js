@@ -23,11 +23,13 @@ const ArtistName = (artists) => {
                 key={idx}
                 onClick={doModal}>
                     {artist.name}
+
             </Button>
             <ArtistModal
                 show={show}
                 closeModal={hideModal}
                 artistid={artist.id} 
+                key={Math.random}
             />
         </>
         ))
