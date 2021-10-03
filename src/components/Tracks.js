@@ -4,6 +4,7 @@ import axios from 'axios';
 import LoadingPage from './LoadingPage';
 import Table from './Tracks.Table';
 import ArtistName from './ArtistName';
+import { Container } from 'react-bootstrap';
 
 function Tracks() {
 
@@ -77,10 +78,10 @@ function Tracks() {
     }
 
     return (
-        <div>
+        <Container fluid="xl">
             <h4 className="text-muted">{playlistname}</h4>
             <Table columns={columns} data={tracks} />
-        </div>
+        </Container>
     )
 }
 
