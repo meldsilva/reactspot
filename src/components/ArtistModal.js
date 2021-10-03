@@ -74,10 +74,11 @@ const ArtistModal = ({ show, closeModal, artistid }) => {
                   src= {artist.images.length > 0 ? artist.images[0].url : img404} />
                 <Card.Body>
                   <Card.Text style={{ fontSize: 13, fontFamily: "Arial" }}>
-                    <span>Followers: {artist.followers.total.toLocaleString()} </span>
-                    <ProgressBar now={artist.popularity} label={`Popularity ${artist.popularity}%`} />
+                    <span>Followers: {artist.followers.total.toLocaleString()} </span><br/>
+                    <span>
+                      <ProgressBar now={artist.popularity} label={`Popularity ${artist.popularity}`} />
+                    </span>
 
-                    <br/>
                     {
                       artist.genres.map( (genre, idx)  =>
                         <span style={{padding: 1}}>
