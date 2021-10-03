@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
 import LoadingPage from './LoadingPage';
 import Table from './Tracks.Table';
-// import Artist from './Artist';
-import useModal from './customhooks/useModal';
-import Modal from './Modal';
+import ArtistName from './ArtistName';
 
 function Tracks() {
 
@@ -83,72 +80,6 @@ function Tracks() {
             <h4 className="text-muted">{playlistname}</h4>
             <Table columns={columns} data={tracks} />
         </div>
-    )
-}
-
-// Custom component to render Artist Names
-const ArtistName = (artists) => {
-    // Loop through the array and create a badge-like component instead of a comma-separated string
-    // console.log("Artistnames: ", artistnames);
-    const [loading, setLoading] = useState(false);
-    const [artist, setArtist] = useState({});
-    const token = localStorage.getItem('token');
-    const {isShowing, toggle} = useModal();
-
-    // const uri = 'https://api.spotify.com/v1/artists/1sXbwvCQLGZnaH0Jp2HTVc';
-    const uri = `https://api.spotify.com/v1/artists/${artists.artistid}`;
-
-    useEffect( () => {
-        setLoading(true);
-
-        async function fetchData(){
-        try {
-            const response = await axios.get(uri, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-           
-            setArtist(response.data);
-            console.log("Artists Response", response.data);
-        }
-        catch(error) {
-            console.log(error);
-        }
-        finally {
-            setLoading(false);
-        }
-    }
-    fetchData()
-    },[]);
-
-
-
-
-    const displayArtist = (name, href) => {
-        console.log(name);
-        // alert(event.target.innerText);
-    }
-    
-    if (loading) {
-        return <LoadingPage />;
-    }
-
-// {/* onClick={() => {navigate(`/artists/${artist.id}`)}} */}
-    return (        
-        artists.artists.map( (artist, idx) => (
-            <React.Fragment>
-            <Button variant="link" 
-                key={idx}
-                onClick={toggle}>
-                    {artist.name}
-            </Button>
-            <Modal 
-            isShowing={isShowing}
-            hide={toggle} 
-            artistdata={artist}/>            
-            </React.Fragment>
-          ))
     )
 }
 
