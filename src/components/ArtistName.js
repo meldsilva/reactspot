@@ -14,7 +14,7 @@ const ArtistName = (artists) => {
         console.log("Called Tracks.hideModal");
         showModal(false);
     }
-
+    // console.log("Artists Prop: " ,artists);
     return (       
         
         artists.artists.map( (artist, idx) => (

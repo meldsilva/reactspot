@@ -29,7 +29,8 @@ function Tracks() {
                 },
                 {
                     Header: 'Date Added',
-                    accessor: 'added_at'.toLocaleString()
+                    accessor: 'added_at',
+                    // Cell: ({ cell: { value } }) //=> value.toLocaleString()
                 },
          ],
         []

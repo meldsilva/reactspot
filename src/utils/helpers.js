@@ -15,16 +15,12 @@ export const createBearerToken = (client_id, client_secret) => {
     const stringToEncode = `${client_id}:${client_secret}`;
     return Buffer.from(stringToEncode).toString("base64");
 }
-//
-// export const setAuthHeader = () => {
-//     try {
-//         const params = JSON.parse(localStorage.getItem('params'));
-//         if (params) {
-//             axios.defaults.headers.common[
-//                 'Authorization'
-//                 ] = `Bearer ${params.access_token}`;
-//         }
-//     } catch (error) {
-//         console.log('Error setting auth', error);
-//     }
-// };
+
+export function capitalize(string) {
+    //es5
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    // es6 using destructuring 
+    // const ret = ([first,...rest]) => first.toUpperCase() + rest.join('').toLowerCase();
+    // return ret;
+    
+}

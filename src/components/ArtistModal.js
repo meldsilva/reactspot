@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { Card, Button, ListGroup,  Modal as BootModal } from "react-bootstrap";
+import { Card, Button, Badge,  Modal as BootModal } from "react-bootstrap";
 import axios from "axios";
+import { capitalize } from "../utils/helpers"
+import img404 from '../assets/images/img_not_found.gif';
 
 const ArtistModal = ({ show, closeModal, artistid }) => {
 
@@ -11,10 +13,10 @@ const ArtistModal = ({ show, closeModal, artistid }) => {
   const uri = `https://api.spotify.com/v1/artists/${artistid}`;
 
   console.log("Show: ",show);
-  // console.log("Artist: ", artistdata.name);
-  // console.log("Artist ID: ", artistdata.id);
-  console.log("Artist Data: ", artistid);
-  console.log("Artist API Resp: ", artist);
+  console.log("Artist ID: ", artistid);
+  console.log("Artist Resp Data: ", artist);
+  console.log("Artist Image URL: ", artist.images);
+  console.log("Artist Popularity: ", artist.popularity);
 
   const handleHide = () => {
     closeModal();
@@ -54,32 +56,43 @@ const ArtistModal = ({ show, closeModal, artistid }) => {
   return(
     ReactDOM.createPortal(      
         <React.Fragment>
-          <BootModal show={show} onHide={handleHide} size="md">
+          <BootModal show={show} onHide={handleHide} size="sm">
             <BootModal.Header closeButton>
               <BootModal.Title>{artist.name}</BootModal.Title>
             </BootModal.Header>
             <BootModal.Body>
-              <Card className="card">
-                {/* <Card.Img variant="top" src={artist.images[0].uri} /> */}
+              <Card className="card" bg='light'>
+                {/* <Card.Img variant="top" src={img404} /> */}
+                <Card.Img 
+                  variant="top" 
+                  src= {artist.images.length > 0 ? artist.images[0].url : img404} />
                 <Card.Body>
-                  <Card.Text style={{ fontSize: 13, fontFamily: "Arial" }}>
-                    <ListGroup variant="flushed">
+                  <Card.Text style={{ fontSize: 15, fontFamily: "Arial" }}>
+                    <span>Popularity: {artist.popularity.toLocaleString()} </span>
+                    <br/>
+                    <span>Followers: {artist.followers.total.toLocaleString()} </span>
+                    <br/>
+                    <span>Type: {capitalize(artist.type)} </span>
+                    <br/>
                     {
                       artist.genres.map( (genre, idx)  =>
-                        <ListGroup.Item key={idx}>{genre}</ListGroup.Item>
+                        <span style={{padding: 1}}>
+                        <Badge pill 
+                        key={idx}
+                        bg={idx % 2 === 0  ? 'primary' : 'success'}>
+                          {`${capitalize(genre)}`}</Badge>
+                        </span>
                       )
                     }
-                    </ListGroup>
-                    Followers: {artist.followers.total}
                   </Card.Text>
                 </Card.Body>
               </Card>
             </BootModal.Body>
-            <BootModal.Footer>
+            {/* <BootModal.Footer>
               <Button variant="secondary" onClick={handleHide}>
                 Close
               </Button>
-            </BootModal.Footer>
+            </BootModal.Footer> */}
           </BootModal>
         </React.Fragment>,
         document.body
