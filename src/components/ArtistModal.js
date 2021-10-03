@@ -56,7 +56,13 @@ const ArtistModal = ({ show, closeModal, artistid }) => {
   return(
     ReactDOM.createPortal(      
         <React.Fragment>
-          <BootModal show={show} onHide={handleHide} size="sm">
+          <BootModal centered 
+            show={show} 
+            onHide={handleHide} 
+            size="sm"
+            // dialogClassName="modal-90w"
+            // aria-labelledby="example-custom-modal-styling-title"
+            >
             <BootModal.Header closeButton>
               <BootModal.Title>{artist.name}</BootModal.Title>
             </BootModal.Header>
