@@ -6,9 +6,12 @@ import { Button } from 'react-bootstrap';
 const ArtistName = (artists) => {
     // Loop through the array and create a badge-like component instead of a comma-separated string
     const [show, showModal] = useState(false);
-    const doModal = () => {
+    const [activeArtist, setActiveArtist] = useState('');
+    const doModal = (event) => {
         console.log("Called Tracks.doModal");
+        console.log("Event info: ",event.target);
         showModal(true);
+        setActiveArtist(event.currentTarget.id);
     }
     const hideModal = () => {
         console.log("Called Tracks.hideModal");
@@ -18,9 +21,10 @@ const ArtistName = (artists) => {
     return (       
         
         artists.artists.map( (artist, idx) => (
-        <>
+        <React.Fragment>
             <Button variant="link" 
                 key={idx.toString()}
+                id={artist.id}
                 onClick={doModal}>
                     {artist.name}
 
@@ -29,9 +33,10 @@ const ArtistName = (artists) => {
                 show={show}
                 closeModal={hideModal}
                 artistid={artist.id} 
+                activeArtist={activeArtist}
                 key={Math.random.toString()}
             />
-        </>
+        </React.Fragment>
         ))
     )
 }
