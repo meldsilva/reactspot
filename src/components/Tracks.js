@@ -31,7 +31,7 @@ function Tracks() {
                 {
                     Header: 'Date Added',
                     accessor: 'added_at',
-                    // Cell: ({ cell: { value } }) //=> value.toLocaleString()
+                    Cell: ({ cell: { value } }) => {  const dt = new Date(value); return dt.toLocaleString() }
                 },
          ],
         []
