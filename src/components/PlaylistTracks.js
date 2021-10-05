@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
 import LoadingPage from './LoadingPage';
 import Table from './PlaylistTracks.Table';
 import ArtistName from './ArtistName';
 import { Container } from 'react-bootstrap';
+import Trackinfo from './TrackInfo';
 
 function PlaylistTracks() {
 
@@ -17,7 +18,12 @@ function PlaylistTracks() {
         () => [ 
                 {
                     Header: 'Track',
-                    accessor: 'track.name'
+                    accessor: 'track.name',
+                    accessor: row => `${row.track.name} ${row.track.id}`,
+                    Cell: ({ cell: { value } }) => 
+                    <Fragment>
+                    <Trackinfo key={Math.random.toString()} trackname={value} />
+                    </Fragment>
                 },
                 {
                     Header: 'Album',

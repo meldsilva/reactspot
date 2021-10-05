@@ -8,16 +8,13 @@ const ArtistName = (artists) => {
     const [show, showModal] = useState(false);
     const [activeArtist, setActiveArtist] = useState('');
     const doModal = (event) => {
-        console.log("Called Tracks.doModal");
-        console.log("Event info: ",event.target);
         showModal(true);
         setActiveArtist(event.currentTarget.id);
     }
     const hideModal = () => {
-        console.log("Called Tracks.hideModal");
         showModal(false);
     }
-    // console.log("Artists Prop: " ,artists);
+    
     return (       
         
         artists.artists.map( (artist, idx) => (

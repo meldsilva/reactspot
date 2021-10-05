@@ -10,6 +10,7 @@ import Podcasts from "./components/Podcasts";
 import RedirectPage from "./components/RedirectPage";
 import SpotifyPage from './components/SpotifyPage';
 import PlaylistTracks from './components/PlaylistTracks';
+// import Trackinfo from './components/TrackInfo';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="albums" element={<Albums />} />
             </Route>
           <Route path="playlisttracks/:playlistname/:playlistid" element={<PlaylistTracks />} />
+          {/* <Route path="track/:trackid" element={<Trackinfo />} /> */}
           <Route path="callback" element={<RedirectPage />} />
           <Route path="*" element={<PageNotFound />} />
       </Routes>
