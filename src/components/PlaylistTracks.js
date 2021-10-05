@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
 import LoadingPage from './LoadingPage';
-import Table from './Tracks.Table';
+import Table from './PlaylistTracks.Table';
 import ArtistName from './ArtistName';
 import { Container } from 'react-bootstrap';
 
-function Tracks() {
+function PlaylistTracks() {
 
     const playlistid = useParams().playlistid;
     const playlistname = useParams().playlistname;
@@ -85,5 +85,5 @@ function Tracks() {
     )
 }
 
-export default Tracks;
+export default PlaylistTracks;
 

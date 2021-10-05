@@ -1,10 +1,10 @@
 import {useTable} from 'react-table';
 import React from 'react';
 // import logo from './logo.svg';
-import "../components/Tracks.Table.css"
+import "../components/PlaylistTracks.Table.css"
 
 // const tableInstance = useTable({ columns, tracks });
-export default function Table({ columns, data }) {
+export default function PlaylistTracks({ columns, data }) {
     // Table component logic and UI come here
     const {
         getTableProps, // table props from react-table

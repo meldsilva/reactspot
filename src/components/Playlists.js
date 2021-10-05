@@ -60,7 +60,7 @@ const Playlists = () => {
                     <li>
                         Tracks:
                         <Button variant="link" style={{padding: 2}}
-                                onClick={() => {navigate(`/tracks/${pl.name}/${pl.id}`)}}>{pl.tracks.total}
+                                onClick={() => {navigate(`/playlisttracks/${pl.name}/${pl.id}`)}}>{pl.tracks.total}
                         </Button>
                         
                     </li>
