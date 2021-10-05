@@ -2,23 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 
-const TrackInfo = ({trackname}) => {
-
-
-    const trackid = '6ng47hft8dJO3VhgrnIqps';
-
-    // const name  = trackname;
+const TrackInfo = ({trackinfo}) => {
     
-    // const trackid = useParams().trackid;
-    // const trackname = useParams().trackname;
+    const arr = trackinfo.split(':');
+    const [trackname, trackid] = arr;
     const token = localStorage.getItem('token');
     const uri = `https://api.spotify.com/v1/tracks/${trackid}`;
 
     const [show, showModal] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [trackinfo, setTrackInfo] = useState({});
+    const [track, setTrack] = useState({});
 
-    console.log("Track Name: ", trackname);
+    console.log("Track Name: ", arr);
     console.log("Track ID: ", trackid);
     
     const doModal = (event) => {

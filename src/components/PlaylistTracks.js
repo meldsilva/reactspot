@@ -19,10 +19,10 @@ function PlaylistTracks() {
                 {
                     Header: 'Track',
                     accessor: 'track.name',
-                    accessor: row => `${row.track.name} ${row.track.id}`,
+                    accessor: row => `${row.track.name}:${row.track.id}`,
                     Cell: ({ cell: { value } }) => 
                     <Fragment>
-                    <Trackinfo key={Math.random.toString()} trackname={value} />
+                    <Trackinfo key={Math.random.toString()} trackinfo={value} />
                     </Fragment>
                 },
                 {
