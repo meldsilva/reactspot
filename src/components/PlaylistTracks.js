@@ -27,7 +27,8 @@ function PlaylistTracks() {
                 },
                 {
                     Header: 'Album',
-                    accessor: 'track.album.name'
+                    accessor: 'track.album.name',
+                    defaultColumnWidths: 180
                 },
                 {
                     Header: 'Artist',

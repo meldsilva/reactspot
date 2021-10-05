@@ -1,7 +1,7 @@
-import {useTable} from 'react-table';
+import {useTable, useFlexLayout } from 'react-table';
 import React from 'react';
 // import logo from './logo.svg';
-import "../components/PlaylistTracks.Table.css"
+// import "../components/PlaylistTracks.Table.css"
 
 // const tableInstance = useTable({ columns, tracks });
 export default function PlaylistTracks({ columns, data }) {

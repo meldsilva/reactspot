@@ -20,6 +20,7 @@ const ArtistName = (artists) => {
         artists.artists.map( (artist, idx) => (
         <React.Fragment>
             <Button variant="link" 
+                className="text-left"
                 key={idx.toString()}
                 id={artist.id}
                 onClick={doModal}>

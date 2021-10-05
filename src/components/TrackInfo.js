@@ -53,6 +53,7 @@ const TrackInfo = ({trackinfo}) => {
     return (       
         <React.Fragment>
             <Button variant="link" 
+            className="text-left"
                 // onClick={doModal}>
                 onClick={handleGetArtistInfo}>
                     {trackname}
