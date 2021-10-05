@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import TrackInfoModal from './TrackInfoModal';
 
 const TrackInfo = ({trackinfo}) => {
     
@@ -13,56 +14,55 @@ const TrackInfo = ({trackinfo}) => {
     const [loading, setLoading] = useState(false);
     const [track, setTrack] = useState({});
 
-    console.log("Track Name: ", arr);
-    console.log("Track ID: ", trackid);
+    // console.log("Track Name: ", arr);
+    // console.log("Track ID: ", trackid);
     
-    const doModal = (event) => {
+    const doModal = () => {
         showModal(true);
+        console.log("show in TrackInfo::doModal() is: ", show);
     }
     const hideModal = () => {
         showModal(false);
     }
 
-    // useEffect( () => {
-    //     setLoading(true);
-  
-    //     async function fetchData(){
-    //     try {
-    //         const response = await axios.get(uri, {
-    //             headers: {
-    //                 'Authorization': `Bearer ${token}`
-    //             }
-    //         });
-           
-    //         setTrackInfo(response.data);
-    //     }
-    //     catch(error) {
-    //         console.log(error);
-    //     }
-    //     finally {
-    //         setLoading(false);
-    //     }
-    // }
-    // fetchData()
-    // },[]);
+    const handleGetArtistInfo = (event) => {
 
-    
+        async function fetchData() {
+        try {
+            const response = await axios.get(uri, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            
+            setTrack(response.data);
+            }
+            catch(error) {
+                console.log(error);
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+        fetchData();
+        doModal();
+    }
+
+
+
     return (       
-        
         <React.Fragment>
             <Button variant="link" 
-                onClick={doModal}>
+                // onClick={doModal}>
+                onClick={handleGetArtistInfo}>
                     {trackname}
             </Button>
-            {/* <ArtistModal
+            <TrackInfoModal
                 show={show}
                 closeModal={hideModal}
-                artistid={artist.id} 
-                activeArtist={activeArtist}
-                key={Math.random.toString()}
-            /> */}
+                track={track} 
+            />
         </React.Fragment>
-        
     )
 }
 

@@ -24,7 +24,6 @@ const ArtistName = (artists) => {
                 id={artist.id}
                 onClick={doModal}>
                     {artist.name}
-
             </Button>
             <ArtistModal
                 show={show}

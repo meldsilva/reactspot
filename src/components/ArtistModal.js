@@ -102,5 +102,4 @@ const ArtistModal = ({ show, closeModal, artistid, activeArtist }) => {
         document.body
       ));
 }
-
 export default ArtistModal;
