@@ -47,8 +47,9 @@ const TrackInfoModal = ({ show, closeModal, track }) => {
                     {
 
                         track.album.artists.map( (track) => (
+                                <span>{`${track.name}`}&nbsp;</span>
 
-                            <span>{track.name +=  ' | '.slice(3)}</span>
+                            // <span style={{padding: 'padding-left:4px'}}>{track.name}</span>
                         )
 
 
