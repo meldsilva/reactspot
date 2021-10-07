@@ -38,36 +38,11 @@ const TrackInfoModal = ({ show, closeModal, track }) => {
                 {/*    variant="top"*/}
                 {/*    src= {track.album.images.length > 0 ? track.album.images[0].url : img404} />*/}
               <Card.Body>
-                <Card.Text style={{ fontSize: 13, fontFamily: "Arial" }}>
-                    {/*<iframe src={track.preview_url} width="100%" height="380"*/}
-                    {/*        frameBorder="0" allowFullScreen=""*/}
-                    {/*        allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture">*/}
-                    {/*</iframe>*/}
-                    {/*<iframe src={track.preview_url} width="100%" height="77"*/}
-                    {/*        frameBorder="0" allowFullScreen=""*/}
-                    {/*        allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture">*/}
-                    {/*</iframe>*/}
-                    <iframe src={uri} width="100%" height="380"
-                            frameBorder="0" allowFullScreen=""
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-                    </iframe>
-                    {/*<iframe src={uri} width="100%" height="80"*/}
-                    {/*        frameBorder="0" allowFullScreen=""*/}
-                    {/*        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">*/}
-                    {/*</iframe>*/}
+                <Card.Text style={{ fontSize: 13, fontFamily: "Arial", textAlign: 'left' }}>
                     <br/>
                     {
-
                         track.album.artists.map( (track) => (
-                                <span>{`${track.name}`}&nbsp;</span>
-
-                            // <span style={{padding: 'padding-left:4px'}}>{track.name}</span>
-                        )
-
-
-
-                            // (<><span>{track.name}</span> <br/></>)
-                            // {track.name + '|'}
+                                <span style={{textAlign: 'left'}}>{`${track.name}`}&nbsp;</span>)
                         )
                     }<br />
                     {/*{track.id}*/}

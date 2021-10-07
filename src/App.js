@@ -1,6 +1,8 @@
 import React from "react";
 // import logo from './logo.svg';
 // import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {Route, Routes} from "react-router-dom";
 import Home from "./components/Home";
 import Playlists from "./components/Playlists";

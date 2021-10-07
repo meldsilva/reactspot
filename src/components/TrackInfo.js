@@ -52,9 +52,7 @@ const TrackInfo = ({trackinfo}) => {
 
     return (       
         <React.Fragment>
-            <Button variant="link" 
-            className="text-left"
-                // onClick={doModal}>
+            <Button variant="link" style={{textAlign: 'left'}}
                 onClick={handleGetArtistInfo}>
                     {trackname}
             </Button>

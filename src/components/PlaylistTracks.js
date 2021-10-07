@@ -15,31 +15,49 @@ function PlaylistTracks() {
     const uri = `https://api.spotify.com/v1/playlists/${playlistid}/tracks`;
 
     const columns = React.useMemo(
-        () => [ 
+        () => [
+                // {
+                //     Header: 'Track',
+                //     align: 'left',
+                //     accessor: row => `${row.track.name}:${row.track.id}`,
+                //     Cell: ({ cell: { value } }) =>
+                //         <Fragment>
+                //             <Trackinfo key={Math.random.toString()} trackinfo={value} />
+                //         </Fragment>
+                // },
                 {
                     Header: 'Track',
                     accessor: 'track.name',
-                    accessor: row => `${row.track.name}:${row.track.id}`,
-                    Cell: ({ cell: { value } }) => 
-                    <Fragment>
-                    <Trackinfo key={Math.random.toString()} trackinfo={value} />
-                    </Fragment>
+                    maxWidth: 150
+
                 },
                 {
                     Header: 'Album',
                     accessor: 'track.album.name',
-                    defaultColumnWidths: 180
+                    maxWidth: 150,
                 },
                 {
                     Header: 'Artist',
                     accessor: 'track.artists',
-                    Cell: ({ cell: { value } }) => <ArtistName key={Math.random.toString()} artists={value} />        
+                    Cell: ({ cell: { value } }) =>
+                        <ArtistName key={Math.random.toString()} artists={value} />
                 },
                 {
                     Header: 'Date Added',
                     accessor: 'added_at',
+                    maxWidth: 150,
                     Cell: ({ cell: { value } }) => {  const dt = new Date(value); return dt.toLocaleString() }
                 },
+            {
+                Header: 'Preview',
+                accessor: 'track.preview_url',
+                Cell: ({ cell: { value } }) =>
+                    <div>
+                        <audio controls style={{width: 110, height: 25, color: 'green'}}
+                               useRef="audio_tag" autoPlay={false}
+                               src={value} Play/>
+                    </div>
+            }
          ],
         []
     );
