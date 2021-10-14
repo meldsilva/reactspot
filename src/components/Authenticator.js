@@ -1,5 +1,6 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
 
 const Authenticator = () => {
     // Constants
@@ -23,7 +24,8 @@ const Authenticator = () => {
 
     return(
         <div>
-            <Button style={{backgroundColor: "#1DB954"}}
+            {/* <Button style={{backgroundColor: "#1DB954"}} */}
+            <Button variant="contained" style={{backgroundColor: "#1DB954"}}
             onClick={getauthcode}>Sign in</Button>
         </div>
     );
