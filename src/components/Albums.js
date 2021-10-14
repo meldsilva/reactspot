@@ -5,7 +5,7 @@ import { Row, Col } from "react-bootstrap";
 const Albums = (props) => {
     return(
         <React.Fragment>
-        <h2>Albums</h2>
+        <h4 className="text-muted">Albums</h4>
 
         <Row xs={1} md={4} className="g-4">
         {Array.from({ length: 10 }).map((_, idx) => (
