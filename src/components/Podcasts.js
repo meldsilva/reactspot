@@ -1,7 +1,7 @@
 import React from "react";
 const Podcasts = (props) => {
     return(
-        <h2>Podcasts</h2>
+        <h4 className="text-muted">Podcasts</h4>
     );
 }
 export default Podcasts;

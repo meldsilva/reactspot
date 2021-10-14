@@ -1,4 +1,4 @@
-import {useTable, useFlexLayout } from 'react-table';
+import { useTable } from 'react-table';
 import React from 'react';
 // import logo from './logo.svg';
 // import "../components/PlaylistTracks.Table.css"
