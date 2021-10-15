@@ -27,7 +27,6 @@ function App() {
               <Route path="newreleases" element={<NewReleases />} />
             </Route>
           <Route path="playlisttracks/:playlistname/:playlistid" element={<PlaylistTracks />} />
-          {/* <Route path="track/:trackid" element={<Trackinfo />} /> */}
           <Route path="callback" element={<RedirectPage />} />
           <Route path="*" element={<PageNotFound />} />
       </Routes>
