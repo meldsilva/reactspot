@@ -9,10 +9,10 @@ const SpotifyPage = () => {
         <div style={{backgroundColor: "black", height: "30%"}}>
         <h2>Spotify Page</h2>
         <StyledNav>
-            <StyledLink activeClassName="active" to="playlists">Playlists</StyledLink>
-            <StyledLink activeClassName="active" to="podcasts">Podcasts</StyledLink>
-            <StyledLink activeClassName="active" to="albums">Albums</StyledLink> 
-            <StyledLink activeClassName="active" to="newreleases">New Releases</StyledLink> 
+            <StyledLink activeclassname="active" to="playlists">Playlists</StyledLink>
+            <StyledLink activeclassname="active" to="podcasts">Podcasts</StyledLink>
+            <StyledLink activeclassname="active" to="albums">Albums</StyledLink> 
+            <StyledLink activeclassname="active" to="newreleases">New Releases</StyledLink> 
         </StyledNav>
         </div>
         <Container fluid="xl">
