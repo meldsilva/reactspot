@@ -3,38 +3,28 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';import Grid from '@mui/material/Grid';
 import { CardMedia, Typography } from "@material-ui/core";
-import Button from '@mui/material/Button';
+import ArtistName from './ArtistName';
 
-const header_style = {
-  backgroundColor: '#1DB954',
-  color: '#FFF',
-  fontSize: 17,
-  fontWeight: 'bold',
-  width: 800,
-  maxWidth: 800
-  
-}
+const GridTile = ({release}) => {
 
-const NewReleasesGrid = ({new_releases}) => {
-
-        return (
-          <>
-<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-  <Grid item xs>
-     <Card sx={{ maxWidth: 300 }}>
+  return (
+    <Grid item lg={3}>
+    <Card sx={{ maxWidth: 600, maxHeight: 600 }}>
       <CardMedia
         component="img"
-        height="150"
-        image="https://avatars.githubusercontent.com/u/2364086?v=4"
-        alt="green iguana"
+        height="300"
+        image={release.images[0].url}
+        alt={release.name}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
+        <Typography gutterBottom variant="subtitle1" component="div">
+          {release.name}
         </Typography>
+        <ArtistName artists={release.artists} />
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          <li>Released: {release.release_date}</li>
+          <li>Type: {release.album_type}</li>
+          <li>Tracks: {release.total_tracks}</li>
         </Typography>
       </CardContent>
       {/* <CardActions>
@@ -43,48 +33,21 @@ const NewReleasesGrid = ({new_releases}) => {
       </CardActions> */}
     </Card>  
     </Grid>
-  <Grid item xs>
-  <Card sx={{ maxWidth: 300 }}>
-      <CardMedia
-        component="img"
-        height="150"
-        image="https://avatars.githubusercontent.com/u/2364086?v=4"
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Trynosaurus
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-    </Card> 
-  </Grid>
-  <Grid item xs>
-  <Card sx={{ maxWidth: 300 }}>
-      <CardMedia
-        component="img"
-        height="150"
-        image="https://avatars.githubusercontent.com/u/2364086?v=4"
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Pene
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-    </Card> 
-  </Grid> 
-</Grid>
-          </>
 
+  )
+}
+
+const NewReleasesGrid = ({new_releases}) => {
+  return (
+    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      {
+        new_releases.items.map( (release) => 
+          <GridTile release={release} />
         )
+      }
+    </Grid>
+
+  )
 }
 
 export default NewReleasesGrid;

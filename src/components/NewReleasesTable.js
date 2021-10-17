@@ -1,5 +1,7 @@
 import React from "react";
 import MaterialTable from "material-table";
+import ArtistName from './ArtistName';
+
 
 const header_style = {
   backgroundColor: '#1DB954',
@@ -31,14 +33,13 @@ const NewReleasesTable = ({new_releases}) => {
                           field: 'artists',
                           headerStyle: header_style,
                           render: rowData => {
-                              return (
-                                        
-                                        rowData.artists.map( (artist) => {
-                                          // {return artist.name} >{artist.name}</p>}
-                                            {return <p key={artist.name} >{artist.name}</p>}
-                                        } )
-                                    
-                              )
+                            // <ArtistName artists={rowData.artists} />
+                              //  return (rowData.artists.map( (artist) => {
+                                          // {return <p key={artist.name} >{artist.name}</p>}
+                                          {return <ArtistName 
+                                            artists={rowData.artists}
+                                            key={Math.random().toString()} />}
+                                      // }))
                             }
                       },
                       { title: 'Type', field: 'album_type', headerStyle: header_style },

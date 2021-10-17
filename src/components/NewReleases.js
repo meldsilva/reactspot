@@ -11,7 +11,7 @@ import Tooltip from '@mui/material/Tooltip';
 const NewReleases = () => {
 
     const [loading, setLoading] = useState(false);
-    const [viewType, setViewType] = useState('list');
+    const [viewType, setViewType] = useState('grid');
     const [newReleases, setNewReleases] = useState({});
     const token = localStorage.getItem('token');
     const uri = 'https://api.spotify.com/v1/browse/new-releases?country=us&limit=50';
@@ -59,17 +59,16 @@ const NewReleases = () => {
 
     return(
         <React.Fragment>
-
-            <Tooltip title="List View">
-                <IconButton onClick={handleViewTypeList}
-                tooltip="List View" aria-label="list" color="primary">
-                <ListIcon />
-                </IconButton>
-            </Tooltip>
             <Tooltip title="Grid View">
                 <IconButton onClick={handleViewTypeGrid}
                 aria-label="grid" color="primary">
                 <GridViewIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="List View">
+                <IconButton onClick={handleViewTypeList}
+                tooltip="List View" aria-label="list" color="primary">
+                <ListIcon />
                 </IconButton>
             </Tooltip>
             {
