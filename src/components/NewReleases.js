@@ -58,25 +58,33 @@ const NewReleases = () => {
     }
 
     return(
-        <React.Fragment>
-            <Tooltip title="Grid View">
-                <IconButton onClick={handleViewTypeGrid}
-                aria-label="grid" color="primary">
-                <GridViewIcon />
-                </IconButton>
-            </Tooltip>
-            <Tooltip title="List View">
-                <IconButton onClick={handleViewTypeList}
-                tooltip="List View" aria-label="list" color="primary">
-                <ListIcon />
-                </IconButton>
-            </Tooltip>
+        <div>
             {
                 viewType === 'list' ?
-                <NewReleasesTable new_releases={newReleases.albums}/> : 
-                <NewReleasesGrid new_releases={newReleases.albums}/>
-             }
-        </React.Fragment>
+                <div>
+                    <Tooltip title="Grid View">
+                        <IconButton onClick={handleViewTypeGrid}
+                        aria-label="grid" color="primary">
+                        <GridViewIcon />
+                        </IconButton>
+                    </Tooltip>
+                    <NewReleasesTable new_releases={newReleases.albums}/>
+                </div>
+                :
+                <div>
+                    <Tooltip title="List View">
+                        <IconButton onClick={handleViewTypeList}
+                        tooltip="List View" aria-label="list" color="primary">
+                        <ListIcon />
+                        </IconButton>
+                    </Tooltip>
+                    <NewReleasesGrid new_releases={newReleases.albums}/>
+                </div>
+
+            }
+            </div>
+
+
     );
 
 }
