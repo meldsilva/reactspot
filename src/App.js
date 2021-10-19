@@ -1,8 +1,5 @@
 import React from "react";
-// import logo from './logo.svg';
-// import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import {Route, Routes} from "react-router-dom";
 import Home from "./components/Home";
 import Playlists from "./components/Playlists";
@@ -11,7 +8,6 @@ import Albums from "./components/Albums";
 import Podcasts from "./components/Podcasts";
 import RedirectPage from "./components/RedirectPage";
 import SpotifyPage from './components/SpotifyPage';
-import PlaylistTracks from './components/PlaylistTracks';
 import PlaylistTracksMUI from './components/PlaylistTracksMUI';
 import NewReleases from './components/NewReleases';
 
