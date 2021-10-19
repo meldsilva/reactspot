@@ -44,8 +44,7 @@ const Playlists = () => {
     return(
         <div>                        
             <h4 className="text-muted">Playlists</h4>
-
-            
+           
             <Row xs={1} md={5} className="g-6">
             {playlists.items.map((pl,idx) =>  (
                 <Col key={idx}>
@@ -60,7 +59,7 @@ const Playlists = () => {
                     <li>
                         Tracks:
                         <Button variant="link" style={{padding: 2}}
-                                onClick={() => {navigate(`/playlisttracks/${pl.name}/${pl.id}`)}}>{pl.tracks.total}
+                                onClick={() => {navigate(`/playlisttracksmui/${pl.name}/${pl.id}`)}}>{pl.tracks.total}
                         </Button>
                         
                     </li>

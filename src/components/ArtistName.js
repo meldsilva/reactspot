@@ -3,7 +3,6 @@ import ArtistModal from './ArtistModal';
 import { Button } from 'react-bootstrap';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-// import { withStyles } from '@mui/material';
 
 // Custom component to render Artist Names
 const ArtistName = (artists) => {
@@ -11,36 +10,18 @@ const ArtistName = (artists) => {
     const [show, showModal] = useState(false);
     const [activeArtist, setActiveArtist] = useState('');
     const doModal = (event) => {
-        // alert('sss');
         showModal(true);
         setActiveArtist(event.currentTarget.id);
     }
     const hideModal = () => {
         showModal(false);
     }
-    
-    // // // Chip color override example - DND
-    // const StyleChip = withStyles({
-    //     root: {
-    //     backgroundColor:'yellow'
-    //     }
-    // })(Chip);
 
     return (       
-        
         artists.artists.map( (artist, idx) => (
         <React.Fragment>
-            {/* <Button variant="link" 
-                style={{textAlign: 'left'}}
-                key={idx.toString()}
-                id={artist.id}
-                onClick={doModal}>
-                    {artist.name}
-            </Button> */}
-            
             <Stack direction="column" spacing={1}>
             {
-                // <Chip label="Clickable Link" component="a" href="#basic-chip" clickable />                
                 <Chip 
                     clickable
                     id={artist.id}
