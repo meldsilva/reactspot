@@ -23,7 +23,6 @@ function App() {
               <Route path="albums" element={<Albums />} />
               <Route path="newreleases" element={<NewReleases />} />
             </Route>
-          {/* <Route path="playlisttracks/:playlistname/:playlistid" element={<PlaylistTracks />} /> */}
           <Route path="playlistTracksmui/:playlistname/:playlistid" element={<PlaylistTracksMUI />} />
           <Route path="callback" element={<RedirectPage />} />
           <Route path="*" element={<PageNotFound />} />
