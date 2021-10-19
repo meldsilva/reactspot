@@ -2,9 +2,8 @@ import React, {  useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
 import LoadingPage from './LoadingPage';
-import Table from './PlaylistTracks.Table';
-import ArtistName from './ArtistName';
-import { Container } from 'react-bootstrap';
+import MaterialTable from "material-table";
+import { Divider } from '@material-ui/core';
 
 function PlaylistTracks() {
 
@@ -102,10 +101,11 @@ function PlaylistTracks() {
     }
 
     return (
-        <Container fluid="xl">
+        // <Container fluid="xl">
+        <div>
             <h4 className="text-muted">{playlistname}</h4>
-            <Table columns={columns} data={tracks} />
-        </Container>
+            <MaterialTable columns={columns} data={tracks} />
+        </div>
     )
 }
 

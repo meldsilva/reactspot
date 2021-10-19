@@ -47,23 +47,21 @@ const NewReleasesTable = ({new_releases}) => {
                       { title: '# Tracks', field: 'total_tracks', type: 'numeric', headerStyle: header_style },
                   ]   
               }
-            data={new_releases.items}
-            // data={[
-            //   { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-            //   { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-            // ]}        
+            data={
+              new_releases.items
+            }    
             options={{
               sorting: true,
               search: true,
               pageSize: 20,
               showTitle: false,
               maxBodyHeight: '500px',
-              searchFieldAlignment: 'left',
-              
+              searchFieldAlignment: 'left'
+            }}
               // exportButton: true
               // tableLayout: 'fixed'
               // tableLayout: 'auto'   
-            }}
+            
           />
         )
 }
