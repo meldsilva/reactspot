@@ -6,18 +6,15 @@ import { StyledLink, StyledNav } from "./SpotifyPageStyles";
 const SpotifyPage = () => {
     return(
         <React.Fragment>
-        <div style={{backgroundColor: "black", height: "30%"}}>
-        <h2>Spotify Page</h2>
-        <StyledNav>
-            <StyledLink activeclassname="active" to="playlists">Playlists</StyledLink>
-            <StyledLink activeclassname="active" to="podcasts">Podcasts</StyledLink>
-            <StyledLink activeclassname="active" to="albums">Albums</StyledLink> 
-            <StyledLink activeclassname="active" to="newreleases">New Releases</StyledLink> 
-        </StyledNav>
-        </div>
-        <Container fluid="xl">
-            <Outlet />
-        </Container>
+            <div style={{backgroundColor: "black", height: "6%", width: '100%', position: 'fixed'}}>
+                <StyledNav>
+                    <StyledLink activeclassname="active" to="playlists">Playlists</StyledLink>
+                    <StyledLink activeclassname="active" to="podcasts">Podcasts</StyledLink>
+                    <StyledLink activeclassname="active" to="albums">Albums</StyledLink> 
+                    <StyledLink activeclassname="active" to="newreleases">New Releases</StyledLink> 
+                </StyledNav>
+                <Outlet />
+            </div>
         </React.Fragment>
     );
 }

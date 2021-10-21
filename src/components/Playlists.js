@@ -42,9 +42,8 @@ const Playlists = () => {
     }
 
     return(
-        <div>                        
-            <h4 className="text-muted">Playlists</h4>
-           
+        <div style={{position: 'inherit'}}>
+            {/* <h4 className="text-muted">Playlists</h4> */}
             <Row xs={1} md={5} className="g-6">
             {playlists.items.map((pl,idx) =>  (
                 <Col key={idx}>
